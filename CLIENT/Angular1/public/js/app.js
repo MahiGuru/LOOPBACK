@@ -34,7 +34,7 @@ angular
 
             Venues.find({
                     "filter": {
-                        where: { "id": "57c01ce92824f838441deaba" },
+                        /*where: { "id": "57c01ce92824f838441deaba" },*/
                         include: {
                             relation: "restaurants",
                             scope: {
@@ -64,7 +64,7 @@ angular
                 });
 
 
-  
+
 
 
             //WORKING REST EXAMPLE......

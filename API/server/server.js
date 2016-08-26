@@ -16,7 +16,7 @@ app.start = function() {
     })
 }
 
-app.use(loopback.static(path.resolve(__dirname, '../client')))
+app.use(loopback.static(path.resolve(__dirname, '../../CLIENT/ANGULAR1')))
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
