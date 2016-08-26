@@ -1,0 +1,37 @@
+{
+    "name": "Ratings",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "rating": {
+            "type": "number",
+            "required": true,
+            "default": 0
+        },
+        "comment": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string",
+            "required": true
+        }
+    },
+    "validations": [],
+    "relations": {
+        "items": {
+            "type": "belongsTo",
+            "model": "Items",
+            "foreignKey": "itemsId"
+        }
+    },
+    "acls": [{
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW"
+    }],
+    "methods": {}
+}

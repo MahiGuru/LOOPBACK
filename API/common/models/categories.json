@@ -1,0 +1,40 @@
+{
+    "name": "Categories",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "categoryID": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "displayItems": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "validations": [],
+    "relations": {
+        "sections": {
+            "type": "belongsTo",
+            "model": "Sections",
+            "foreignKey": ""
+        },
+        "items": {
+            "type": "hasMany",
+            "model": "Items",
+            "foreignKey": ""
+        }
+    },
+    "acls": [{
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW"
+    }],
+    "methods": {}
+}

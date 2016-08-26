@@ -1,0 +1,40 @@
+{
+    "name": "Sections",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "sectionID": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "displayOrder": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "validations": [],
+    "relations": {
+        "categories": {
+            "type": "hasMany",
+            "model": "Categories",
+            "foreignKey": ""
+        },
+        "restaurants": {
+            "type": "belongsTo",
+            "model": "Restaurants",
+            "foreignKey": ""
+        }
+    },
+    "acls": [{
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW"
+    }],
+    "methods": {}
+}

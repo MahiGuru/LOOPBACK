@@ -1,0 +1,32 @@
+{
+    "name": "Venues",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "venueName": {
+            "type": "string"
+        },
+        "status": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "validations": [],
+    "relations": {
+        "restaurants": {
+            "type": "hasMany",
+            "model": "Restaurants",
+            "foreignKey": ""
+        }
+    },
+    "acls": [{
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW"
+    }],
+    "methods": {}
+}

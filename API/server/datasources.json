@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "DBMongo": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "GPDB",
+    "password": "",
+    "name": "DBMongo",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

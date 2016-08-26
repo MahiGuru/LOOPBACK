@@ -1,0 +1,32 @@
+{
+    "name": "Images",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "img_url": {
+            "type": "string"
+        },
+        "is_primary": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "validations": [],
+    "relations": {
+        "items": {
+            "type": "belongsTo",
+            "model": "Items",
+            "foreignKey": "itemsId"
+        }
+    },
+    "acls": [{
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW"
+    }],
+    "methods": {}
+}

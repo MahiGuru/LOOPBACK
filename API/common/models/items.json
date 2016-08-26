@@ -1,0 +1,47 @@
+{
+    "name": "Items",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "itemID": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "price": {
+            "type": "number"
+        }
+    },
+    "validations": [],
+    "relations": {
+        "categories": {
+            "type": "belongsTo",
+            "model": "Categories",
+            "foreignKey": ""
+        },
+        "ratings": {
+            "type": "hasMany",
+            "model": "Ratings",
+            "foreignKey": ""
+        },
+        "images": {
+            "type": "hasMany",
+            "model": "Images",
+            "foreignKey": ""
+        }
+    },
+    "acls": [{
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW"
+    }],
+    "methods": {}
+}
