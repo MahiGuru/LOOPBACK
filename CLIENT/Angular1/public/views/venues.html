@@ -1,1 +1,66 @@
-{{title}}
+<div class="row">
+    <div class="col-lg-4">
+        <ul class="list-group" ng-repeat="venue in menu">
+            <li>Area Name : {{ venue.venueName }}
+                <button class="btn btn-default" ng-click="GetVenueRestaurants(venue.id, venue.venueName)">GET</button>
+
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="alert alert-danger">
+                <h4>LOCATION : {{ venueName }} </h4>
+            </div>
+            <ul class="list-group" ng-repeat="restaurant in restaurants">
+                <li class="list-group-item">
+                    <div class="alert alert-warning" role="button" data-toggle="collapse" ng-attr-href="#{{restaurant.id}}" aria-expanded="false" aria-controls="collapseExample">
+                        <h4>Restaurant Name : {{ restaurant.restaurantName }} </h4>
+                    </div>
+                    <div class="collapse" ng-attr-id="{{restaurant.id}}">
+                        <div class="row">
+
+                            <ul class="nav nav-tabs" id="myTabs">
+                                <li role="presentation" ng-repeat="section in restaurant.sections">
+                                    <a ng-attr-href="#{{section.id}}" role="tab" data-toggle="tab">{{ section.name }}</a></li>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade" ng-repeat="section in restaurant.sections" role="tabpanel" ng-attr-id="{{section.id}}">
+                                    <div role="presentation" ng-repeat="category in section.categories">
+                                        <h3>{{category.name}}</h3>
+                                        <div role="presentation" ng-repeat="item in category.items">
+
+                                            <div class="alert alert-success" role="alert">
+                                                <h4> {{ item.name}}  
+                                                    <span class="label label-info"> <a ng-attr-href="#{{item.id}}" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">reviews</a></span>
+                                                </h4>
+                                                <div class=" collapse" ng-attr-id="{{item.id}}">
+                                                    <div class="col-lg-12 alert alert-info" role="presentation" ng-repeat="rating in item.ratings">
+                                                        <div role="alert">
+                                                            <h5> {{ rating.title}} </h5>
+                                                            <p>{{rating.rating}} - {{ rating.comment }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>

@@ -32,51 +32,59 @@ angular
         function($scope, $state, $http, Venues, Restaurants, Items) {
             $scope.title = "MAHIPAL";
 
-            Venues.find({
-                    "filter": {
-                        /*where: { "id": "57c01ce92824f838441deaba" },*/
-                        include: {
-                            relation: "restaurants",
-                            scope: {
-                                include: {
-                                    relation: "sections",
-                                    scope: {
-                                        include: {
-                                            relation: "categories",
-                                            scope: {
-                                                include: {
-                                                    relation: "items",
-                                                    scope: {
-                                                        include: ["ratings", "images"]
+            Venues.find({},
+                function(data) {
+                    $scope.menu = data;
+                });
 
-                                                    }
+            $scope.GetVenueRestaurants = function(venueId, venueName) {
+                console.log(venueId);
+                $scope.venueName = venueName;
+                Restaurants.find({
+                        "filter": {
+                            where: { "venuesId": venueId },
+                            include: {
+                                relation: "sections",
+                                scope: {
+                                    include: {
+                                        relation: "categories",
+                                        scope: {
+                                            include: {
+                                                relation: "items",
+                                                scope: {
+                                                    include: ["ratings", "images"]
+
                                                 }
                                             }
                                         }
+
                                     }
                                 }
                             }
                         }
-                    }
-                },
-                function(data) {
-                    console.log(data);
-                });
+                    },
+                    function(data) {
+                        console.log(data);
+                        $scope.restaurants = data;
+                        $('#myTabs a').click(function(e) {
+                            e.preventDefault();
+                            $(this).tab('show');
+                        });
+                    });
+            }
 
 
-
-
-
-            //WORKING REST EXAMPLE......
-            $http({
-                method: "GET",
-                url: "http://localhost:3000/api/venues?filter[include][restaurants][sections][categories][items]=ratings&filter[include][restaurants][sections][categories][items]=images"
-            }).then(function(result) {
-                console.log("RESULT ", result);
-            }, function(err) {
-                console.log(err);
-            })
-
+            /*
+                        //WORKING REST EXAMPLE......
+                        $http({
+                            method: "GET",
+                            url: "http://localhost:3000/api/venues?filter[include][restaurants][sections][categories][items]=ratings&filter[include][restaurants][sections][categories][items]=images"
+                        }).then(function(result) {
+                            console.log("RESULT ", result);
+                        }, function(err) {
+                            console.log(err);
+                        })
+            */
 
             //console.log(Venues.find());
         }
