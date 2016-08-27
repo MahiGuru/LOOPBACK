@@ -1,37 +1,39 @@
 {
-    "name": "Ratings",
-    "base": "PersistedModel",
-    "idInjection": true,
-    "options": {
-        "validateUpsert": true
+  "name": "Ratings",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "rating": {
+      "type": "number",
+      "required": true,
+      "default": 0
     },
-    "properties": {
-        "rating": {
-            "type": "number",
-            "required": true,
-            "default": 0
-        },
-        "comment": {
-            "type": "string"
-        },
-        "title": {
-            "type": "string",
-            "required": true
-        }
+    "comment": {
+      "type": "string"
     },
-    "validations": [],
-    "relations": {
-        "items": {
-            "type": "belongsTo",
-            "model": "Items",
-            "foreignKey": "itemsId"
-        }
-    },
-    "acls": [{
-        "accessType": "*",
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW"
-    }],
-    "methods": {}
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "items": {
+      "type": "belongsTo",
+      "model": "Items",
+      "foreignKey": "itemsId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
 }

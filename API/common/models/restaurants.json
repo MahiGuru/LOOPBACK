@@ -1,43 +1,45 @@
 {
-    "name": "Restaurants",
-    "base": "PersistedModel",
-    "idInjection": true,
-    "options": {
-        "validateUpsert": true
+  "name": "Restaurants",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "restaurantID": {
+      "type": "string",
+      "required": true,
+      "default": 1
     },
-    "properties": {
-        "restaurantID": {
-            "type": "string",
-            "required": true,
-            "default": 1
-        },
-        "restaurantName": {
-            "type": "string",
-            "required": true
-        },
-        "displaySections": {
-            "type": "boolean",
-            "default": true
-        }
+    "restaurantName": {
+      "type": "string",
+      "required": true
     },
-    "validations": [],
-    "relations": {
-        "sections": {
-            "type": "hasMany",
-            "model": "Sections",
-            "foreignKey": ""
-        },
-        "venues": {
-            "type": "belongsTo",
-            "model": "Venues",
-            "foreignKey": ""
-        }
+    "displaySections": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sections": {
+      "type": "hasMany",
+      "model": "Sections",
+      "foreignKey": ""
     },
-    "acls": [{
-        "accessType": "*",
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW"
-    }],
-    "methods": {}
+    "venues": {
+      "type": "belongsTo",
+      "model": "Venues",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
 }

@@ -16,25 +16,18 @@ angular
                 templateUrl: 'public/views/venues.html',
                 controller: 'VenueController'
             });
-
         $urlRouterProvider.otherwise('venues');
     }]);
 
-
-// Copyright IBM Corp. 2015. All Rights Reserved.
-// Node module: loopback-example-angular
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
-
 angular
     .module('GPAPP')
-    .controller('VenueController', ['$scope', '$state', '$http', 'Venues', 'Restaurants', 'Items',
-        function($scope, $state, $http, Venues, Restaurants, Items) {
+    .controller('VenueController', ['$scope', '$state', '$http', 'Venues', 'Restaurants', 'Items', 'MyItems',
+        function($scope, $state, $http, Venues, Restaurants, Items, MyItems) {
             $scope.title = "MAHIPAL";
 
             Venues.find({},
                 function(data) {
-                    $scope.menu = data;
+                    $scope.venues = data;
                 });
 
             $scope.GetVenueRestaurants = function(venueId, venueName) {
@@ -71,8 +64,15 @@ angular
                             $(this).tab('show');
                         });
                     });
-            }
-
+            };
+            $scope.itemAdd = function(item, orderNum) {
+                var obj = angular.merge({}, item);
+                console.log(obj);
+                delete obj.id;
+                MyItems.create(obj, function(data) {
+                    console.log("ITEMSSSSS ", data);
+                });
+            };
 
             /*
                         //WORKING REST EXAMPLE......
@@ -85,34 +85,6 @@ angular
                             console.log(err);
                         })
             */
-
-            //console.log(Venues.find());
-        }
-    ]).controller('RestaurantCtrl', ['$scope', '$state', 'Restaurants',
-        function($scope, $state, Restaurants) {
-            //            console.log(Restaurants.find().$promise.then());
-
-
-
-        }
-    ]).controller('SectionsCtrl', ['$scope', '$state', 'Sections',
-        function($scope, $state, Venues, Sections) {
-
-        }
-    ]).controller('CategoryCtrl', ['$scope', '$state', 'Categories',
-        function($scope, $state, Venues, Categories) {
-
-        }
-    ]).controller('ItemsCtrl', ['$scope', '$state', 'Items',
-        function($scope, $state, Venues, Items) {
-
-        }
-    ]).controller('RatingCtrl', ['$scope', '$state', 'Images',
-        function($scope, $state, Venues, Images) {
-
-        }
-    ]).controller('ImgCtrl', ['$scope', '$state', 'Ratings',
-        function($scope, $state, Venues, Ratings) {
 
         }
     ]);

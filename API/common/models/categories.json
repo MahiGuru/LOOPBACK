@@ -1,40 +1,42 @@
 {
-    "name": "Categories",
-    "base": "PersistedModel",
-    "idInjection": true,
-    "options": {
-        "validateUpsert": true
+  "name": "Categories",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "categoryID": {
+      "type": "string"
     },
-    "properties": {
-        "categoryID": {
-            "type": "string"
-        },
-        "name": {
-            "type": "string"
-        },
-        "displayItems": {
-            "type": "boolean",
-            "default": true
-        }
+    "name": {
+      "type": "string"
     },
-    "validations": [],
-    "relations": {
-        "sections": {
-            "type": "belongsTo",
-            "model": "Sections",
-            "foreignKey": ""
-        },
-        "items": {
-            "type": "hasMany",
-            "model": "Items",
-            "foreignKey": ""
-        }
+    "displayItems": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sections": {
+      "type": "belongsTo",
+      "model": "Sections",
+      "foreignKey": ""
     },
-    "acls": [{
-        "accessType": "*",
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW"
-    }],
-    "methods": {}
+    "items": {
+      "type": "hasMany",
+      "model": "Items",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
 }

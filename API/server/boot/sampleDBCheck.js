@@ -12,6 +12,7 @@ module.exports = function(app) {
     var itemModel = app.models.Items;
     var ratingModel = app.models.Ratings;
     var imgModel = app.models.Images;
+    var myItemsModel = app.models.MyItems;
 
 
     //Hotel Names
@@ -64,9 +65,11 @@ module.exports = function(app) {
             restaurantModel.remove();
             venuesModel.find({}, function(err, venues) {
                 _.forEach(venues, function(venue, index) {
-                    restaurantModel.create([
-                        { "restaurantID": "RES_ID_0" + (index), "restaurantName": RestNames[index], "displaySections": true, "venuesId": (venue.id).valueOf() },
-                    ]);
+                    _.forEach(RestNames, function(restaurant) {
+                        restaurantModel.create([
+                            { "restaurantID": "RES_ID_0" + (index), "restaurantName": restaurant, "displaySections": true, "venuesId": (venue.id).valueOf() },
+                        ]);
+                    });
                 });
                 callback();
             });
@@ -188,6 +191,7 @@ module.exports = function(app) {
         },
         function(callback) {
             //clearing the exxisting collection..
+            myItemsModel.remove();
             imgModel.remove();
             itemModel.find({}, function(err, items) {
                 _.forEach(items, function(item, index) {
