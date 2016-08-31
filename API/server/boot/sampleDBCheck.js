@@ -21,6 +21,9 @@ module.exports = function(app) {
     var sectionsArr = ["STARTERS", "SOUPS", "SALADS", "MAIN COURSE", "DESERTS"];
     //SECTION CODE
     var sectionCode = ["STARTER", "SOUP", "SALAD", "MAIN", "DESERT"];
+    //Prefernces
+    var hotPrefernces = ["Spicy", "Less", "With"];
+
 
     //category
     var categoryArr = ["Veg", "NonVeg", "Eggiterian"];

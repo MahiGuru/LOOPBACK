@@ -75,10 +75,10 @@
                         </span>
                         <span class="pull-right">
                           <span class="glyphicon glyphicon-minus"
-                                ng-click="itemRemove(item)"></span>
+                                ng-click="$parent.itemRemove(item)"></span>
                           <span>{{item.itemCount}}</span>
                           <span class="glyphicon glyphicon-plus"
-                                ng-click="itemAdd(item, restaurant.venuesId)"></span>
+                                ng-click="$parent.itemAdd(item)"></span>
                         </span></p>
                       </h4>{{item.id}} 
                       <div class=" collapse"

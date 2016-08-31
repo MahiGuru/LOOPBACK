@@ -22,8 +22,8 @@ angular
 
 angular
     .module('GPAPP')
-    .controller('VenueController', ['$scope', '$state', '$http', 'Venues', 'Restaurants', 'Items', 'MyItems',
-        function($scope, $state, $http, Venues, Restaurants, Items, MyItems) {
+    .controller('VenueController', ['$scope', '$rootScope', '$state', '$http', 'Venues', 'Restaurants', 'Items', 'MyItems',
+        function($scope, $rootScope, $state, $http, Venues, Restaurants, Items, MyItems) {
             $scope.title = "MAHIPAL";
 
             Venues.find({},
@@ -60,6 +60,7 @@ angular
                         }
                     },
                     function(data) {
+
                         //Added Item Count for this user...
                         _.forEach(data, function(hotel) {
                             _.forEach(hotel.sections, function(section) {
@@ -68,18 +69,24 @@ angular
                                         if ($scope.myItems <= 0) item.itemCount = 0;
                                         else {
                                             var itemC = _.filter($scope.myItems, function(myitem) {
-                                                return item.id == myitem.parentID;
+                                                return item.id == myitem.id;
                                             });
-                                            item.itemCount = itemC.length;
+                                            item.itemCount = (itemC[0] != undefined) ? itemC[0].itemCount : 0;
                                         }
                                     });
+                                    category.items.sort(function(a, b) {
+                                        return a.itemCount < 1;
+                                    })
                                 });
                             })
                         });
 
-                        console.log(data);
-
                         $scope.restaurants = data;
+
+                        _.filter($scope.restaurants, function(r) {
+                            return
+                        })
+
                         $('#myTabs a').click(function(e) {
                             e.preventDefault();
                             $(this).tab('show');
@@ -87,67 +94,88 @@ angular
                     });
             };
 
-            $scope.itemRemove = function(item) {
-                var getanId;
+            $rootScope.itemRemove = function(item) {
                 if (item.itemCount >= 1) {
-                    MyItems.find({
-                        filter: {
-                            where: { "parentID": item.id }
-                        }
-                    }, function(data) {
-                        if (data.length > 0) {
-                            MyItems.deleteById({ "id": data[0].id }, function(data) {
-                                item.itemCount = (item.itemCount > 0) ? (item.itemCount - 1) : 0;
+                    MyItems.findById({ "id": item.id }, function(myitems) {
+                        console.log(myitems);
+                        if (myitems.itemCount >= 1) {
+                            item.itemCount = item.itemCount - 1;
+                            MyItems.replaceById({ "id": item.id }, item,
+                                function(createdItem) {
+                                    item.itemCount = createdItem.itemCount;
+                                    console.log("ITEM MINUS Replaced ", createdItem);
+                                });
+                        } else {
+                            MyItems.deleteById({ "id": item.id }, function(data) {
+                                item.itemCount = 0;
                                 console.log("successfully Item removed");
                             });
                         }
                     });
+
                 }
 
             }
-            $scope.itemAdd = function(item, orderNum) {
+            $rootScope.itemAdd = function(item) {
                 if (item.itemCount != undefined) item.itemCount = item.itemCount + 1;
                 else { item.itemCount = 1 }
-                var obj = angular.merge({}, item);
-                console.log(obj);
-                obj.parentID = obj.id;
-                delete obj.id;
-                MyItems.create(obj, function(data) {
-                    $scope.itemCount++;
-                    console.log("ITEMSSSSS ", data);
-                });
+                MyItems.exists({ "id": item.id }, function(data) {
+                    if (data.exists) {
+                        MyItems.replaceById({ "id": item.id }, item,
+                            function(createdItem) {
+                                console.log("ITEM Replaced ", createdItem);
+                            });
+                    } else {
+                        MyItems.create(item, function(createdItem) {
+                            console.log("ITEM ADDED ", createdItem);
+                        });
+                    }
+                })
 
             };
             $scope.$watch('restaurants', function(newValue, oldValue, scope) {
                 MyItems.count(function(data) {
-                    console.log("COUNT ", data);
                     $scope.countData = data.count;
                 });
             }, true);
 
-            //
-            /*MyItems.find({
-                filter: {
-                    where: { "parentID": obj.parentID }
-                }
-            }, function(data) {
-                console.log("MYITEMS FIND DATA ", data);
-            })*/
-
-            //ITEMS COUNT  
 
         }
     ]).controller("reviewController", ['$scope', '$http', 'MyItems', '$state', function($scope, http, MyItems, $state) {
         MyItems.find({}, function(myitems) {
             $scope.myItems = myitems;
-           /* var filteredItems = _.filter(myitems, function(item) {
-                return item.parentID ==
-            })*/
-            var k = _.groupBy(myitems, 'parentID');
-            console.log(k);
-
-
+            console.log("MYITEMS >>>> ", myitems)
+            var groupOfItems = _.groupBy(myitems, 'parentID');
         });
+        $scope.removeItem = function(item) {
+            console.log(item);
+            MyItems.deleteById({ "id": item.id }, function(data) {
+                console.log("successfully Item removed");
+                MyItems.find({}, function(myitems) {
+                    $scope.myItems = myitems;
+                })
+            });
+        }
+        $scope.addPreference = function(item) {
+            MyItems.findById({ "id": item.id }, function(myitem) {
+                $scope.pItem = myitem;
+            });
+            $('#myModal').modal("show");
+        }
+        $scope.savePreference = function(item) {
+            MyItems.replaceById({ "id": item.id }, item,
+                function(createdItem) {
+                    console.log("ITEM Replaced ", createdItem);
+                    $('#myModal').modal("hide");
+                });
+        }
+
+        $scope.$watch('myItems', function(newValue, oldValue, scope) {
+            MyItems.count(function(data) {
+                $scope.countData = data.count;
+            });
+        }, true);
+
 
 
     }]);
