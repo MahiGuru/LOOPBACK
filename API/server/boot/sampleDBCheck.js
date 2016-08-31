@@ -4,7 +4,7 @@ var _ = require("lodash");
 
 module.exports = function(app) {
     var mongoDs = app.dataSources.DBMongo;
-
+    var customerModel = app.models.Customer;
     var venuesModel = app.models.Venues;
     var restaurantModel = app.models.Restaurants;
     var sectionsModel = app.models.Sections;
@@ -52,6 +52,16 @@ module.exports = function(app) {
 
     // create all models 
     async.series([
+        function(callback) {
+            //clearing the exxisting collection..
+
+            customerModel.remove();
+            customerModel.create([
+                { "firstname": "Mahipal", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "mahi6535@gmail.com", "password": "mahi6535" },
+                { "firstname": "Lucky", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "lucky6535@gmail.com", "password": "mahi6535" },
+                { "firstname": "Kutty", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "kutty6535@gmail.com", "password": "mahi6535" }
+            ], callback);
+        },
         function(callback) {
             //clearing the exxisting collection..
             venuesModel.remove();

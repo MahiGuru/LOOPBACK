@@ -1,0 +1,26 @@
+{
+    "name": "Customer",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "firstname": {
+            "type": "string"
+        },
+        "lastName": {
+            "type": "string"
+        },
+        "mobileNo": {
+            "type": "number"
+        },
+        "email": {
+            "type": "string"
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}

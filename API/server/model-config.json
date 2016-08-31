@@ -1,67 +1,71 @@
 {
-  "_meta": {
-    "sources": [
-      "loopback/common/models",
-      "loopback/server/models",
-      "../common/models",
-      "./models"
-    ],
-    "mixins": [
-      "loopback/common/mixins",
-      "loopback/server/mixins",
-      "../common/mixins",
-      "./mixins"
-    ]
-  },
-  "User": {
-    "dataSource": "db"
-  },
-  "AccessToken": {
-    "dataSource": "DBMongo",
-    "public": false
-  },
-  "ACL": {
-    "dataSource": "DBMongo",
-    "public": false
-  },
-  "RoleMapping": {
-    "dataSource": "DBMongo",
-    "public": false
-  },
-  "Role": {
-    "dataSource": "DBMongo",
-    "public": false
-  },
-  "Venues": {
-    "dataSource": "DBMongo",
-    "public": true
-  },
-  "Restaurants": {
-    "dataSource": "DBMongo",
-    "public": true
-  },
-  "Sections": {
-    "dataSource": "DBMongo",
-    "public": true
-  },
-  "Categories": {
-    "dataSource": "DBMongo",
-    "public": true
-  },
-  "Items": {
-    "dataSource": "DBMongo",
-    "public": true
-  },
-  "Ratings": {
-    "dataSource": "DBMongo",
-    "public": true
-  },
-  "Images": {
-    "dataSource": "DBMongo",
-    "public": true
-  },
-  "MyItems": {
-    "dataSource": "DBMongo",
-    "public": true
-  }
+    "_meta": {
+        "sources": [
+            "loopback/common/models",
+            "loopback/server/models",
+            "../common/models",
+            "./models"
+        ],
+        "mixins": [
+            "loopback/common/mixins",
+            "loopback/server/mixins",
+            "../common/mixins",
+            "./mixins"
+        ]
+    },
+    "User": {
+        "dataSource": "db"
+    },
+    "AccessToken": {
+        "dataSource": "DBMongo",
+        "public": false
+    },
+    "ACL": {
+        "dataSource": "DBMongo",
+        "public": false
+    },
+    "RoleMapping": {
+        "dataSource": "DBMongo",
+        "public": false
+    },
+    "Role": {
+        "dataSource": "DBMongo",
+        "public": false
+    },
+    "Venues": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "Restaurants": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "Sections": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "Categories": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "Items": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "Ratings": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "Images": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "MyItems": {
+        "dataSource": "DBMongo",
+        "public": true
+    },
+    "Customer": {
+        "dataSource": "DBMongo",
+        "public": true
+    }
 }
