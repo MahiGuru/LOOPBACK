@@ -21,5 +21,5 @@ angular
                 controller: "reviewController"
             });
 
-        //$urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/');
     }]);

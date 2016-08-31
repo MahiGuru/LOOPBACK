@@ -1,21 +1,15 @@
-<form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputFile">File input</label>
-        <input type="file" id="exampleInputFile">
-        <p class="help-block">Example block-level help text here.</p>
-    </div>
-    <div class="checkbox">
-        <label>
-      <input type="checkbox"> Check me out
-    </label>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+<div class="col-lg-offset-3 col-lg-5">
+    <h2>Customer Login</h2>
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Mobile/Email</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Mobile/Email" ng-model="user">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="password">
+        </div>
+        <span>Not registered yet? <a href="#" class="btn-link">Sign up</a> here</span>
+        <span class="pull-right"><button type="submit" class="btn btn-default" ng-click="loginClick()">Login</button></span>
+    </form>
+</div>
