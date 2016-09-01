@@ -5,9 +5,12 @@
       <div class="col-lg-3">My Items Count : 
       <span class="text-strong"
             ng-bind="countData"></span></div>
-      <div class="col-lg-5">
+      <div class="col-lg-3">
         <a ui-sref="reviewItems">Review Items</a>
       </div>
+      <div class="col-lg-6 text-right"
+           ng-if="customer">Welcome {{customer.firstname +" " +customer.lastName}} | 
+      <a href="#">Profile</a></div>
     </div>
   </div>
 </nav>
@@ -43,21 +46,10 @@
           <div class="collapse"
                ng-attr-id="{{restaurant.id}}">
             <div class="row">
-              <ul class="nav nav-tabs"
-                  id="myTabs">
-                <li ng-repeat="section in restaurant.sections"
-                    role="presentation">
-                  <a data-toggle="tab"
-                     ng-attr-href="#{{section.id}}"
-                     role="tab">{{ section.name }}</a>
-                </li>
-              </ul>
-              <div class="tab-content"
-                   id="myTabContent">
-                <div class="tab-pane fade"
-                     ng-attr-id="{{section.id}}"
-                     ng-repeat="section in restaurant.sections"
-                     role="tabpanel">
+              <!-- TABSET -->
+              <tabset>
+                <tab heading="{{section.name}}"
+                     ng-repeat="section in restaurant.sections">
                   <div ng-repeat="category in section.categories"
                        role="presentation">
                     <h3>{{category.name}}</h3>
@@ -95,8 +87,13 @@
                       <div class="clearfix"></div></div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </tab>
+              </tabset>
+              <br />
+              <br />
+              <br />
+              <br />
+                
             </div>
           </div>
         </li>

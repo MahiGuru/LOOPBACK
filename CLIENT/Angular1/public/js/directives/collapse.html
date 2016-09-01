@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab">
+        <h4 class="panel-title">
+    <a aria-controls="collapseOne"
+       data-toggle="collapse"
+       role="button">
+      <span ng-transclude="panelHeading"></span>
+    </a>
+  </h4>
+    </div>
+    <div aria-labelledby="headingOne" class="panel-collapse collapse in" role="tabpanel">
+        <div class="panel-body">
+            <div ng-transclude="panelBody"></div>
+        </div>
+    </div>
+</div>

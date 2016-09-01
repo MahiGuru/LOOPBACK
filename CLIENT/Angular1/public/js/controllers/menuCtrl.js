@@ -1,9 +1,13 @@
 angular
     .module('GPAPP')
-    .controller('VenueController', ['$scope', '$rootScope', '$state', '$http', 'Venues', 'Restaurants', 'Items', 'MyItems',
-        function($scope, $rootScope, $state, $http, Venues, Restaurants, Items, MyItems) {
+    .controller('VenueController', ['$scope', '$rootScope', '$state', '$http', 'Venues', 'Restaurants', 'Customer', 'MyItems',
+        function($scope, $rootScope, $state, $http, Venues, Restaurants, Customer, MyItems) {
             $scope.title = "MAHIPAL";
-
+            var customerId = sessionStorage.getItem("customerId");
+            if (customerId == "undefined" || customerId == null) {
+                //$state.go("login");
+                //return;
+            }
             Venues.find({},
                 function(data) {
                     $scope.venues = data;
@@ -11,6 +15,12 @@ angular
             MyItems.find({}, function(myitems) {
                 $scope.myItems = myitems;
             })
+            if (customerId != null && customerId != undefined) {
+                Customer.findById({ "id": customerId }, function(customer) {
+                    console.log(customer);
+                    $scope.customer = customer;
+                });
+            }
             $scope.GetVenueRestaurants = function(venueId, venueName) {
                 console.log(venueId);
                 $scope.venueName = venueName;
