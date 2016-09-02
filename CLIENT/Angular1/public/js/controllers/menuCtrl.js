@@ -1,6 +1,6 @@
 angular
     .module('GPAPP')
-    .controller('VenueController', ['$scope', '$rootScope', '$state', '$http', 'Venues', 'Restaurants', 'Customer', 'MyItems',
+    .controller('menuCtrl', ['$scope', '$rootScope', '$state', '$http', 'Venues', 'Restaurants', 'Customer', 'MyItems',
         function($scope, $rootScope, $state, $http, Venues, Restaurants, Customer, MyItems) {
             $scope.title = "MAHIPAL";
             var customerId = sessionStorage.getItem("customerId");

@@ -57,20 +57,20 @@ module.exports = function(app) {
 
             customerModel.remove();
             customerModel.create([
-                { "firstname": "Mahipal", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "mahi6535@gmail.com", "password": "mahi6535" },
-                { "firstname": "Lucky", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "lucky6535@gmail.com", "password": "mahi6535" },
-                { "firstname": "Kutty", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "kutty6535@gmail.com", "password": "mahi6535" }
+                { "id": "cust_01", "firstname": "Mahipal", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "mahi6535@gmail.com", "password": "mahi6535" },
+                { "id": "cust_02", "firstname": "Lucky", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "lucky6535@gmail.com", "password": "mahi6535" },
+                { "id": "cust_03", "firstname": "Kutty", "lastName": "Gurjala", "mobileNo": 9441076540, "email": "kutty6535@gmail.com", "password": "mahi6535" }
             ], callback);
         },
         function(callback) {
             //clearing the exxisting collection..
             venuesModel.remove();
             venuesModel.create([
-                { "venueName": "Ameerpet", "status": true },
-                { "venueName": "Koti", "status": true },
-                { "venueName": "UPPAL", "status": true },
-                { "venueName": "Madhapur", "status": true },
-                { "venueName": "Dilsukh Nagar", "status": true },
+                { "id": "venue_01", "venueName": "Ameerpet", "status": true },
+                { "id": "venue_02", "venueName": "Koti", "status": true },
+                { "id": "venue_03", "venueName": "UPPAL", "status": true },
+                { "id": "venue_04", "venueName": "Madhapur", "status": true },
+                { "id": "venue_05", "venueName": "Dilsukh Nagar", "status": true },
             ], callback);
         },
         function(callback) {
@@ -78,9 +78,9 @@ module.exports = function(app) {
             restaurantModel.remove();
             venuesModel.find({}, function(err, venues) {
                 _.forEach(venues, function(venue, index) {
-                    _.forEach(RestNames, function(restaurant) {
+                    _.forEach(RestNames, function(restaurant, key) {
                         restaurantModel.create([
-                            { "restaurantID": "RES_ID_0" + (index), "restaurantName": restaurant, "displaySections": true, "venuesId": (venue.id).valueOf() },
+                            { "id": "rest_0" + (index + 1), "restaurantID": "RES_ID_0" + (index), "restaurantName": restaurant, "displaySections": true, "venuesId": (venue.id).valueOf() },
                         ]);
                     });
                 });
@@ -94,7 +94,7 @@ module.exports = function(app) {
                 _.forEach(sectionsArr, function(sectionName, key) {
                     _.forEach(restarants, function(restaurant, index) {
                         sectionsModel.create([
-                            { "sectionID": sectionCode[key], "name": sectionName, "displayOrder": true, "restaurantsId": restaurant.id }
+                            { "id": "sect_0" + (key + 1) + "_" + (index + 1), "sectionID": sectionCode[key], "name": sectionName, "displayOrder": true, "restaurantsId": restaurant.id }
                         ]);
                     });
                 });
@@ -108,6 +108,7 @@ module.exports = function(app) {
                 _.forEach(categoryArr, function(catName, key) {
                     _.forEach(sections, function(section, index) {
                         categoryModel.create([{
+                            "id": "sect_0" + (key + 1) + "_" + (index + 1),
                             "categoryID": categoryCode[key],
                             "name": catName,
                             "displayItems": true,
