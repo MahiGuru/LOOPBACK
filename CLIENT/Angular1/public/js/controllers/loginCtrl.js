@@ -14,7 +14,7 @@ angular
                     console.log(data);
                     if (data != null && data != undefined) {
                         sessionStorage.setItem("customerId", data.id);
-                        //$state.go("menu");
+                        $state.go("menu");
                         console.log("LOGIN SUCCESS MOBILE ", data);
                     }
                 });

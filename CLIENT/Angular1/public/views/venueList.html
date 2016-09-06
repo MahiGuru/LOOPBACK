@@ -1,0 +1,102 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <br />
+    <div class="row">
+      <div class="col-lg-3">My Items Count : 
+      <span class="text-strong"
+            ng-bind="countData"></span></div>
+      <div class="col-lg-3">
+        <a ui-sref="reviewItems">Review Items</a>
+      </div>
+      <div class="col-lg-6 text-right"
+           ng-if="customer">Welcome {{customer.firstname +" " +customer.lastName}} | 
+      <a href="#">Profile</a></div>
+    </div>
+  </div>
+</nav>
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+  <div class="col-lg-4">
+    <ul class="list-group"
+        ng-repeat="venue in venues">
+      <li>Area Name : {{ venue.venueName }} 
+      <button class="btn btn-default"
+              ng-click="GetVenueRestaurants(venue.id, venue.venueName)">GET</button></li>
+    </ul>
+  </div>
+  <div class="col-lg-8">
+    <div class="row">
+      <div class="alert alert-danger">
+        <h4>LOCATION : {{ venueName }}</h4>
+      </div>
+      <ul class="list-group"
+          ng-repeat="restaurant in restaurants">
+        <li class="list-group-item">
+          <div aria-controls="collapseExample"
+               aria-expanded="false"
+               class="alert alert-warning"
+               data-toggle="collapse"
+               ng-attr-href="#{{restaurant.id}}"
+               role="button">
+            <h4>Restaurant Name : {{ restaurant.restaurantName }}</h4>
+          </div>
+          <div class="collapse"
+               ng-attr-id="{{restaurant.id}}">
+            <div class="row">
+              <!-- TABSET -->
+              <tabset>
+                <tab heading="{{section.name}}"
+                     ng-repeat="section in restaurant.sections">
+                  <div ng-repeat="category in section.categories"
+                       role="presentation">
+                    <h3>{{category.name}}</h3>
+                    <div ng-repeat="item in category.items"
+                         role="presentation">
+                      <div class="alert alert-success"
+                           role="alert">
+                      <h4>
+                        <p>{{ item.name}} 
+                        <span class="label label-info">
+                          <a aria-controls="collapseExample"
+                             aria-expanded="false"
+                             data-toggle="collapse"
+                             ng-attr-href="#{{item.id}}">reviews</a>
+                        </span>
+                        <span class="pull-right">
+                          <span class="glyphicon glyphicon-minus"
+                                ng-click="$parent.itemRemove(item)"></span>
+                          <span>{{item.itemCount}}</span>
+                          <span class="glyphicon glyphicon-plus"
+                                ng-click="$parent.itemAdd(item)"></span>
+                        </span></p>
+                      </h4>{{item.id}} 
+                      <div class=" collapse"
+                           ng-attr-id="{{item.id}}">
+                        <div class="col-lg-12 alert alert-info"
+                             ng-repeat="rating in item.ratings"
+                             role="presentation">
+                          <div role="alert">
+                            <h5>{{ rating.title}}</h5>
+                            <p>{{rating.rating}} - {{ rating.comment }}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div></div>
+                    </div>
+                  </div>
+                </tab>
+              </tabset>
+              <br />
+              <br />
+              <br />
+              <br />
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

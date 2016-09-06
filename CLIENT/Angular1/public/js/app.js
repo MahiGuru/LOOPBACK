@@ -10,15 +10,15 @@ angular
                 templateUrl: 'public/views/login.html',
                 controller: "loginCtrl"
             })
-            .state('venues', {
-                url: '/venues',
-                templateUrl: 'public/views/venues.html',
-                controller: 'venueCtrl'
-            })
             .state('menu', {
                 url: '/menu',
                 templateUrl: 'public/views/menu.html',
                 controller: 'menuCtrl'
+            })
+            .state('venueList', {
+                url: '/venueList',
+                templateUrl: 'public/views/venueList.html',
+                controller: 'venueListCtrl'
             })
             .state('reviewItems', {
                 url: '/reviewItems',

@@ -130,56 +130,56 @@ module.exports = function(app) {
                         //VEG STARTER ITEMS
                         _.forEach(vegStarterItems, function(vegStarter, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegStarter, "description": vegStarter, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegStarter, "description": vegStarter, "price": 120, "categoriesId": category.id, status: "0" }
                             ]);
                         });
                     } else if (category.sectionCode == "STARTER" && category.categoryID == "NONVEG") {
                         //VEG NON VEG STARTER ITEMS
                         _.forEach(nonvegStarterItems, function(nonvegStarter, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonvegStarter, "description": nonvegStarter, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonvegStarter, "description": nonvegStarter, "price": 120, "categoriesId": category.id, status: "0" }
                             ]);
                         });
                     } else if (category.sectionCode == "SOUP" && category.categoryID == "VEG") {
                         //VEG SOUPS ITEMS
                         _.forEach(vegSoupsItems, function(vegSoup, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegSoup, "description": vegSoup, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegSoup, "description": vegSoup, "price": 120, "categoriesId": category.id, status: "0" }
                             ]);
                         });
                     } else if (category.sectionCode == "SOUP" && category.categoryID == "NONVEG") {
                         //NON-VEG SOUPS ITEMS
                         _.forEach(nonvegSoupsItems, function(nonvegSoup, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonvegSoup, "description": nonvegSoup, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonvegSoup, "description": nonvegSoup, "price": 120, "categoriesId": category.id, status: "0" }
                             ]);
                         });
                     } else if (category.sectionCode == "SALAD" && category.categoryID == "VEG") {
                         //VEG SALAD ITEMS
                         _.forEach(vegSaladsItems, function(vegSalad, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegSalad, "description": vegSalad, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegSalad, "description": vegSalad, "price": 120, "categoriesId": category.id, status: "0" }
                             ]);
                         });
                     } else if (category.sectionCode == "SALAD" && category.categoryID == "NONVEG") {
                         //VEG NON VEG SALAD ITEMS
                         _.forEach(nonvegSaladItems, function(nonVegSalad, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonVegSalad, "description": nonVegSalad, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonVegSalad, "description": nonVegSalad, "price": 120, "categoriesId": category.id, status : "0" }
                             ]);
                         });
                     } else if (category.sectionCode == "MAIN" && category.categoryID == "VEG") {
                         //VEG MAIN COURSE ITEMS
                         _.forEach(vegMainCourseItems, function(vegMain, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegMain, "description": vegMain, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": vegMain, "description": vegMain, "price": 120, "categoriesId": category.id, status : "0" }
                             ]);
                         });
                     } else if (category.sectionCode == "MAIN" && category.categoryID == "NONVEG") {
                         //VEG MAIN COURSE ITEMS
                         _.forEach(nonvegMainCourseItems, function(nonvegMain, key) {
                             itemModel.create([
-                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonvegMain, "description": nonvegMain, "price": 120, "categoriesId": category.id }
+                                { "itemID": "CATE_ITEM_" + category.categoryID + "_0" + index, "name": nonvegMain, "description": nonvegMain, "price": 120, "categoriesId": category.id, status : "0" }
                             ]);
                         });
                     }

@@ -1,10 +1,9 @@
 angular
     .module('GPAPP')
-    .controller("reviewController", ['$scope', '$http', 'MyItems', '$state', function($scope, http, MyItems, $state) {
+    .controller("reviewController", ['$scope', '$http', 'MyItems', '$state', "$rootScope", "$timeout", function($scope, $http, MyItems, $state, $rootScope, $timeout) {
+
         MyItems.find({}, function(myitems) {
             $scope.myItems = myitems;
-            console.log("MYITEMS >>>> ", myitems)
-            var groupOfItems = _.groupBy(myitems, 'parentID');
         });
         $scope.removeItem = function(item) {
             console.log(item);
@@ -29,7 +28,53 @@ angular
                 });
         }
 
-        $scope.$watch('myItems', function(newValue, oldValue, scope) {
+
+        $rootScope.itemRemove = function(item) {
+            if (item.itemCount > 1) {
+                MyItems.findById({ "id": item.id }, function(myitems) {
+                    if (myitems.itemCount >= 1) {
+                        item.itemCount = item.itemCount - 1;
+                        MyItems.replaceById({ "id": item.id }, item,
+                            function(createdItem) {
+                                item.itemCount = createdItem.itemCount;
+                                console.log("ITEM MINUS Replaced ", createdItem);
+                            });
+                    }
+                });
+            } else {
+                MyItems.deleteById({ "id": item.id }, function(data) {
+                    console.log("successfully Item removed");
+
+                    MyItems.find({}, function(myitems) {
+                        $scope.myItems = myitems;
+                    });
+                });
+
+
+            }
+
+        }
+        $rootScope.itemAdd = function(item) {
+            if (item.itemCount != undefined) item.itemCount = item.itemCount + 1;
+            else { item.itemCount = 1 }
+            MyItems.exists({ "id": item.id }, function(data) {
+                if (data.exists) {
+                    MyItems.replaceById({ "id": item.id }, item,
+                        function(createdItem) {
+                            console.log("ITEM Replaced ", createdItem);
+                        });
+                } else {
+                    MyItems.create(item, function(createdItem) {
+                        console.log("ITEM ADDED ", createdItem);
+                    });
+                }
+            });
+
+        };
+
+
+        $scope.$watchCollection('myItems', function(newValue, oldValue, scope) {
+            console.log("WATCHING ", newValue);
             MyItems.count(function(data) {
                 $scope.countData = data.count;
             });
