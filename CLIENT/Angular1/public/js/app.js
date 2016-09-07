@@ -1,7 +1,8 @@
 angular
     .module('GPAPP', [
         'lbServices',
-        'ui.router'
+        'ui.router',
+        'ngSanitize'
     ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $stateProvider

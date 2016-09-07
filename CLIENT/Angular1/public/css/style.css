@@ -1,3 +1,7 @@
 .padding-lr {
     padding: 0px;
 }
+
+.ng-hide.ng-show {
+    display: block!important;
+}

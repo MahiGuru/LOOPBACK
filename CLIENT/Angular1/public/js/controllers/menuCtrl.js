@@ -75,6 +75,26 @@ angular
                 }
 
             }
+            $scope.searchItem = "";
+            $scope.showSearchItems = true;
+            $scope.searchItemClick = function(event) {
+                if($scope.searchItem.length == 0){
+                $scope.showSearchItems = false;
+                $scope.showSectionName = false;
+                }
+            }
+            $scope.showSectionName = "true";
+            $scope.$watch("searchItem", function(newValue, oldValue, scope) {
+                if (newValue) {
+                    if (newValue.length >= 1) {
+                        $scope.showSearchItems = true;
+                    }
+                }
+                if (newValue == "") {
+                    $scope.showSearchItems = true;
+                    $scope.showSectionName = true;
+                }
+            })
             $rootScope.itemAdd = function(item) {
                 if (item.itemCount != undefined) item.itemCount = item.itemCount + 1;
                 else { item.itemCount = 1 }
@@ -87,7 +107,7 @@ angular
                     } else {
                         MyItems.create(item, function(createdItem) {
                             console.log("ITEM ADDED ", createdItem);
-                            
+
                             MyItems.find({}, function(myitems) {
                                 console.log("MYITEMSSSSSS", myitems);
                                 $scope.myItems = myitems;

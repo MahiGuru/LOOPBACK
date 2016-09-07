@@ -54,6 +54,7 @@ angular
             }
 
         }
+        $scope.recommendItem = "Recommended"
         $rootScope.itemAdd = function(item) {
             if (item.itemCount != undefined) item.itemCount = item.itemCount + 1;
             else { item.itemCount = 1 }

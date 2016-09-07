@@ -3,6 +3,7 @@
       role="tablist">
     <li ng-class="{'active':tab.active}"
         ng-repeat="tab in tabset.tabs"
+        ng-show="tab.showtab == 'true'"
         role="presentation">
       <a href=""
          ng-click="tabset.select(tab)"

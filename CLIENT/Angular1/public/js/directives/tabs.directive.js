@@ -29,13 +29,15 @@ angular
             restrict: "AE",
             transclude: true,
             scope: {
-                heading: "@"
+                heading: "@",
+                showtab: "@"
             },
-            template: "<div class='tabs-panel' ng-show='active' ng-transclude></div>",
+            template: `<div class="tabs-panel" ng-show="active" ng-class="{'ng-show':(showtab == 'false')}" ng-transclude></div>`,
             require: "^tabset",
             link: function(scope, element, attrs, tabsetCtrl) {
                 scope.active = false;
                 tabsetCtrl.addTab(scope);
+                console.log(tabsetCtrl);
             }
         }
     })
