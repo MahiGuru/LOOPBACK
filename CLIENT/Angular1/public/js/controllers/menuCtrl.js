@@ -3,11 +3,28 @@ angular
     .controller("menuCtrl", ['$scope', '$rootScope', '$state', '$http', "Customer", "Venues", "MyItems", "$timeout",
         function($scope, $rootScope, $state, $http, Customer, Venues, MyItems, $timeout) {
 
+            /* Declaring the ngModels below to use in HTML */
+            // Search Input model
+            $scope.searchItem = "";
+            // Show search results only
+            $scope.showSearchItems = true;
+            // Show Category Names respective to search criteria
+            $scope.ShowCategoryNames = "true";
+
+            /*
+             *  Using Below method we are getting the specific Myitems
+             *  We store the list of items in MYITEMS;
+             */
             MyItems.find({}, function(myitems) {
                 $scope.myItems = myitems;
             });
-            console.log("MENU Controller");
 
+            /*
+             *  Using Below method we are getting the specific venue and restaurant menu;
+             *  IDs are passing for select specific VENUE and RESTAURANT;
+             *  And also we are finding the relation to the above restaurant like sections and categories;
+             *  In Callback method we are updating the Itemcount according to MYITEMS count;
+             */
             Venues.restaurants({
                 id: "venue_01",
                 filter: {
@@ -40,6 +57,8 @@ angular
                                         return item.id == myitem.id;
                                     });
                                     item.itemCount = (itemC[0] != undefined) ? itemC[0].itemCount : 0;
+                                    item.confirmedCount = (itemC[0] != undefined) ? itemC[0].confirmedCount : 0;
+                                    item.isConfirmed = (itemC[0] != undefined) ? itemC[0].isConfirmed : false;
                                 }
                             });
                         });
@@ -48,42 +67,80 @@ angular
                 $scope.menus = data;
             });
 
+            /*
+             *  Item Add using Below Method
+             *  Using Upsert method to update or insert the Item..
+             */
+            $rootScope.itemAdd = function(item) {
+                if (item.confirmedCount != undefined && item.isConfirmed != undefined) {
+                    if (item.isConfirmed == true) {
+                        item.itemCount = item.itemCount - item.confirmedCount;
+                        item.isConfirmed = false;
+                    }
+                }
+                if (item.itemCount != undefined) item.itemCount = item.itemCount + 1;
+                MyItems.upsert(item, function(data) {
+                    //check Date Item COUNT == 1 for getting the MYITEMS Count; 
+                    if (data.itemCount == "1") {
+                        MyItems.count(function(data) {
+                            $scope.countData = data.count;
+                        });
+                    }
+                });
+            };
+            /*
+             *  Item Remove/Update using Below Method
+             *  Using Upsert method to update the Item and deleteById Method will use for delete the item if Item count=1 ..
+             */
             $rootScope.itemRemove = function(item) {
                 if (item.itemCount <= 0) return;
                 if (item.itemCount > 1) {
-                    MyItems.findById({ "id": item.id }, function(myitems) {
-                        console.log(myitems);
-                        if (myitems.itemCount >= 1) {
-                            item.itemCount = item.itemCount - 1;
-                            MyItems.replaceById({ "id": item.id }, item,
-                                function(createdItem) {
-                                    item.itemCount = createdItem.itemCount;
-                                    console.log("ITEM MINUS Replaced ", createdItem);
-                                });
-                        } else {
-
+                    //Check confirmedItems Count for above method work;
+                    if (item.isConfirmed != undefined && item.confirmedCount != undefined) {
+                        console.log(item.itemCount);
+                        if (item.itemCount <= item.confirmedCount) {
+                            console.log(item.itemCount, item.confirmedCount, "You can't remove the item");
+                            return;
                         }
+                    }
+                    item.itemCount = item.itemCount - 1;
+                    MyItems.upsert(item, function(data) {
+                        console.log("successfully Removed the item >>>> ", data.itemCount);
                     });
                 } else {
                     MyItems.deleteById({ "id": item.id }, function(data) {
                         item.itemCount = 0;
-                        console.log("successfully Item removed");
                         MyItems.find({}, function(myitems) {
                             $scope.myItems = myitems;
                         });
                     });
                 }
-
             }
-            $scope.searchItem = "";
-            $scope.showSearchItems = true;
-            $scope.searchItemClick = function(event) {
-                if($scope.searchItem.length == 0){
-                $scope.showSearchItems = false;
-                $scope.showSectionName = false;
+
+            /*
+             * Search Input enter method.
+             *  It will set false showSearchItems and ShowCategoryNames to show and remove the category names...
+             */
+            $scope.searchInputEnter = function(event) {
+                if ($scope.searchItem.length == 0) {
+                    $scope.showSearchItems = false;
+                    $scope.ShowCategoryNames = false;
                 }
             }
-            $scope.showSectionName = "true";
+
+            /*
+             *  Watch Group Menus and MyItems from the List
+             *  Using COUNT method to update myitems count..
+             */
+            $scope.$watchGroup(['menus', 'myItems'], function(newValue, oldValue, scope) {
+                MyItems.count(function(data) {
+                    $scope.countData = data.count;
+                });
+            }, true);
+            /*
+             *  Watch Search Item from the Input.
+             *  Display respective items according to search input..
+             */
             $scope.$watch("searchItem", function(newValue, oldValue, scope) {
                 if (newValue) {
                     if (newValue.length >= 1) {
@@ -92,41 +149,8 @@ angular
                 }
                 if (newValue == "") {
                     $scope.showSearchItems = true;
-                    $scope.showSectionName = true;
+                    $scope.ShowCategoryNames = true;
                 }
-            })
-            $rootScope.itemAdd = function(item) {
-                if (item.itemCount != undefined) item.itemCount = item.itemCount + 1;
-                else { item.itemCount = 1 }
-                MyItems.exists({ "id": item.id }, function(data) {
-                    if (data.exists) {
-                        MyItems.replaceById({ "id": item.id }, item,
-                            function(createdItem) {
-                                console.log("ITEM Replaced ", createdItem);
-                            });
-                    } else {
-                        MyItems.create(item, function(createdItem) {
-                            console.log("ITEM ADDED ", createdItem);
-
-                            MyItems.find({}, function(myitems) {
-                                console.log("MYITEMSSSSSS", myitems);
-                                $scope.myItems = myitems;
-                            });
-                        });
-                    }
-                })
-
-            };
-
-
-            $scope.$watchGroup(['menus', 'myItems'], function(newValue, oldValue, scope) {
-                console.log("WATCHING ", newValue);
-                MyItems.count(function(data) {
-                    $scope.countData = data.count;
-                });
-            }, true);
-
-
-
+            });
         }
     ]);

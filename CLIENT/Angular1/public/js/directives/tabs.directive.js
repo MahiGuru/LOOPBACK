@@ -37,7 +37,6 @@ angular
             link: function(scope, element, attrs, tabsetCtrl) {
                 scope.active = false;
                 tabsetCtrl.addTab(scope);
-                console.log(tabsetCtrl);
             }
         }
     })

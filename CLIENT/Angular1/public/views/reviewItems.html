@@ -18,6 +18,9 @@
 <br />
 <div class="row">
     <div class="col-lg-12">
+        <div class="alert alert-warning" role="alert">
+            <h4 class="warning">Pending Items   <span class="pull-right">Items :  <span class="badge">{{ pendingItemCount }}</span></span> </h4>
+        </div>
         <ul class="list-group" ng-repeat="item in myItems">
             <li class="list-item-group">
                 <h4>{{item.name}} <span class="col-sm-offset-2"> <span ng-bind-html="item.price | currency:'Rs':$parent.recommendItem"></span>
@@ -26,6 +29,20 @@
                                     ng-click="$root.itemRemove(item)"></span>
                     <span>{{item.itemCount}}</span>
                     <span class="glyphicon glyphicon-plus" ng-click="$root.itemAdd(item)"></span>
+                    </span> 
+                </h4>
+                <p><a ng-click="addPreference(item)" class="btn btn-link">Add Prefernces</a> | <a ng-click="removeItem(item)" class="btn btn-link btn-danger">Remove Item</a></p>
+            </li>
+        </ul>
+        <br />
+        <div class="alert alert-success" role="alert">
+            <h4 class="success">Confirmed Items <span class="pull-right">Items :  <span class="badge"> {{ confirmedItemCount }}</span></span> </h4>
+        </div>
+        <ul class="list-group" ng-repeat="item in myItems" ng-show="(item.isConfirmed && item.confirmedCount >= 1)">
+            <li class="list-item-group">
+                <h4>{{item.name}} <span class="col-sm-offset-2"> <span ng-bind-html="item.price | currency:'Rs':$parent.recommendItem"></span>
+                    <span class="pull-right">
+                    <span>{{item.confirmedCount}}</span>
                     </span> 
                 </h4>
                 <p><a ng-click="addPreference(item)" class="btn btn-link">Add Prefernces</a> | <a ng-click="removeItem(item)" class="btn btn-link btn-danger">Remove Item</a></p>
