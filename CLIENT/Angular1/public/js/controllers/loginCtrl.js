@@ -20,7 +20,7 @@ angular
             if (typeof parseInt($scope.emailOrPhone) == "number") {
                 Customer.findOne({
                     filter: {
-                        where: { "mobileNo": $scope.emailOrPhone }
+                        where: { "mobileNo": $scope.emailOrPhone, "password": $scope.password }
                     }
                 }, function(data) {
                     console.log(data);

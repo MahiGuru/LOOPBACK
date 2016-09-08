@@ -3,13 +3,13 @@
     <form>
         <div class="form-group">
             <label for="exampleInputEmail1">Mobile/Email</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Mobile/Email" ng-model="user">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Mobile/Email" ng-model="emailOrPhone">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="password">
         </div>
-        <span>Not registered yet? <a href="#" class="btn-link">Sign up</a> here</span>
+        <span>Not registered yet? <a ui-sref="signup" class="btn-link">Sign up</a> here</span>
         <span class="pull-right"><button type="submit" class="btn btn-default" ng-click="loginClick()">Login</button></span>
     </form>
 </div>

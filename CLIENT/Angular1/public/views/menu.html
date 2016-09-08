@@ -9,7 +9,7 @@
                 <a ui-sref="reviewItems">Review Items</a>
             </div>
             <div class="col-lg-6 text-right" ng-if="customer">Welcome {{customer.firstname +" " +customer.lastName}} |
-                <a href="#">Profile</a>
+                <a href="#">Profile</a> | <a href="#" ng-click="logoutClick()">Logout</a>
             </div>
         </div><br>
         <div class="clearfix row">

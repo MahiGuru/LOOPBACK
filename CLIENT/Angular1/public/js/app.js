@@ -11,6 +11,11 @@ angular
                 templateUrl: 'public/views/login.html',
                 controller: "loginCtrl"
             })
+            .state("signup", {
+                url: "/signup",
+                templateUrl: "public/views/signup.html",
+                controller: "signupCtrl"
+            })
             .state('menu', {
                 url: '/menu',
                 templateUrl: 'public/views/menu.html',

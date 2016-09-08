@@ -20,6 +20,26 @@ angular
             });
 
             /*
+             *   Check wheather user has logged in or Not;            
+             */
+            var customerId = sessionStorage.getItem("customerId");
+            if (customerId != undefined && customerId != null) {
+                Customer.findById({ id: customerId }, function(customer) {
+                    $scope.customer = customer;
+                })
+            } else {
+                $state.go("login");
+            }
+            /*
+             *   BELOW Method is use for LOGOUT
+             *   Remove the sessionStorage item..
+             */
+            $scope.logoutClick = function() {
+                sessionStorage.removeItem("customerId");
+                $state.go("login");
+            }
+
+            /*
              *  Using Below method we are getting the specific venue and restaurant menu;
              *  IDs are passing for select specific VENUE and RESTAURANT;
              *  And also we are finding the relation to the above restaurant like sections and categories;
