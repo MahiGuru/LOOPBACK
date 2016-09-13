@@ -1,8 +1,8 @@
 module.exports = function() {
     return {
         facebook: {
-            clientID: "490183321426",
-            clientSecret: "490183321426",
+            clientID: "133777250411548",
+            clientSecret: "32be063c7aa864192139484ce40c312a",
             callback: "http://localhost:3000/auth/facebook/callback"
         },
         google: {
@@ -11,9 +11,9 @@ module.exports = function() {
             callback: "http://localhost:3000/auth/google/callback"
         },
         twitter: {
-            clientID: "490183321426",
-            clientSecret: "490183321426",
-            callback: "http://localhost:3000/auth/twitter/callback"
+            clientID: "Kw6ZlP01t7Ck39wupE1omJCRq",
+            clientSecret: "beMYALvroBDVgKrPC5JXjHN0dLKFAghA2wN19ddsscVwixqwcO",
+            callback: "http://127.0.0.1:3000/auth/twitter/callback"
         },
         github: {
             clientID: "2afeea90a7c6a0fe169d",

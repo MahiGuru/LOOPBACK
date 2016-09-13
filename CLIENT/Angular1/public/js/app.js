@@ -17,7 +17,7 @@ angular
                 controller: "signupCtrl"
             })
             .state('menu', {
-                url: '/menu/',
+                url: '/menu',
                 templateUrl: 'public/views/menu.html',
                 controller: 'menuCtrl'
             })
