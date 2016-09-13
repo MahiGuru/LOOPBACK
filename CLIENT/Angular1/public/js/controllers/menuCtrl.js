@@ -23,12 +23,13 @@ angular
              *   Check wheather user has logged in or Not;            
              */
             var customerId = sessionStorage.getItem("customerId");
+            console.log("customerId", customerId);
             if (customerId != undefined && customerId != null) {
                 Customer.findById({ id: customerId }, function(customer) {
                     $scope.customer = customer;
                 })
             } else {
-                $state.go("login");
+                // $state.go("login");
             }
             /*
              *   BELOW Method is use for LOGOUT
