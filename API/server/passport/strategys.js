@@ -12,11 +12,13 @@ module.exports = function(passport, app) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
+        console.log("SERIALIZE ", user);
         done(null, user.id);
     });
     configAuth = configAuth();
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
+        console.log("DE-SERIALIZE ", id);
         User.findById(id, function(err, user) {
             done(err, user);
         });
@@ -73,16 +75,19 @@ module.exports = function(passport, app) {
     passport.use(new FacebookStrategy({
             clientID: configAuth.facebook.clientID,
             clientSecret: configAuth.facebook.clientSecret,
-            callbackURL: configAuth.facebook.callback
+            callbackURL: configAuth.facebook.callback,
+            enableProof: true
         },
         function(accessToken, refreshToken, profile, done) {
             console.log("FACEBOOK ", profile.id);
             User.findOrCreate({ facebookId: profile.id }, function(err, user) {
                 if (err) {
-                    return done(err);
+                    return done(err, user);
                 }
-                done(null, user);
+                console.log(user);
+                return done(null, user);
             });
+            return done(null, profile);
         }
     ));
 
@@ -101,7 +106,7 @@ module.exports = function(passport, app) {
                 if (err) {
                     return done(err);
                 }
-                done(null, user);
+                return done(null, user);
             });
         }
     ));

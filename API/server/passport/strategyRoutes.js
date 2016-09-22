@@ -28,15 +28,18 @@ module.exports = function(app, passport) {
         });
 
     //Facebook ROUTES
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['publish_actions'] }));
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             failureRedirect: '/',
+            successRedirect: "/#/menu",
             failureFlash: true
         }, function(req, res) {
             // Successful authentication, redirect home.
-            res.redirect("/#/menu");
+            console.log("CALLBACK >>>>> ", req, res);
+        }, function(err, req, res, next) {
+            console.log("ERRR ", res, err);
         }));
 
     //TWITTER ROUTES
@@ -47,6 +50,7 @@ module.exports = function(app, passport) {
             failureRedirect: '/login',
             failureFlash: true
         }, function(req, res) {
+            console.log("CALLBACK >>>>> ", req, res);
             // Successful authentication, redirect home.
             res.redirect("/#/menu");
         }));

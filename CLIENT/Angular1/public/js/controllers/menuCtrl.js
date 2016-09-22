@@ -11,6 +11,21 @@ angular
             // Show Category Names respective to search criteria
             $scope.ShowCategoryNames = "true";
 
+            $scope.filterCategory = { "veg": "", "nonveg": "", "eggie": "" };
+
+            //Range slider config
+            $scope.rangePrice = {
+                minValue: 10,
+                maxValue: 1000,
+                options: {
+                    floor: 60,
+                    ceil: 1000,
+                    step: 5,
+                    translate: function(value) {
+                        return 'Rs ' + value;
+                    }
+                }
+            };
             /*
              *  Using Below method we are getting the specific Myitems
              *  We store the list of items in MYITEMS;

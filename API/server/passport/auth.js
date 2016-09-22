@@ -1,8 +1,8 @@
 module.exports = function() {
     return {
         facebook: {
-            clientID: "133777250411548",
-            clientSecret: "32be063c7aa864192139484ce40c312a",
+            clientID: "995874810521617",
+            clientSecret: "17d5a0480db21aa71bb4f13d43d9fcde",
             callback: "http://localhost:3000/auth/facebook/callback"
         },
         google: {

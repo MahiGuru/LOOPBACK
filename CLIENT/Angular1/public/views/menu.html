@@ -28,13 +28,25 @@
                     {{ menu.restaurantName }}</h4>
             </div>
             <div class="row">
+                <input type="checkbox" ng-model="filterCategory.veg" ng-true-value="'VEG'" ng-false-value=""> VEG
+                <input type="checkbox" ng-model="filterCategory.nonveg" ng-true-value="'NONVEG'" ng-false-value=""> NONVEG
+                <input type="checkbox" ng-model="filterCategory.eggie" ng-true-value="'EGGIE'" ng-false-value=""> EGGIE
+            </div>
+            {{filterCategory | json}}
+
+
+            <article>
+                <rzslider data-rz-slider-model="rangePrice.minValue" data-rz-slider-high="rangePrice.maxValue" data-rz-slider-options="rangePrice.options"></rzslider>
+            </article>
+
+            <div class="row">
                 <!-- TABSET -->
                 <tabset>
                     <tab showtab="{{ShowCategoryNames}}" heading="{{section.name}}" ng-repeat="section in menu.sections">
-                        <div ng-repeat="category in section.categories" role="presentation">
+                        <div ng-repeat="category in section.categories | SectionFilter:filterCategory" role="presentation">
                             <h3 ng-show="ShowCategoryNames">{{category.name}}</h3>
                             <!-- | orderBy: '-itemCount' -->
-                            <div ng-repeat="item in category.items | filter:searchItem" role="presentation">
+                            <div ng-repeat="item in category.items | filter:searchItem | itemPriceFilter:rangePrice.minValue:rangePrice.maxValue" role="presentation">
 
                                 <div class="alert alert-success" role="alert">
                                     <h4>

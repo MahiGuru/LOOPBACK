@@ -34,10 +34,10 @@ app.use(loopback.static(path.resolve(__dirname, '../../CLIENT/ANGULAR1')))
 
 // required for passport 
 app.use(session({
-    secret: "iloveloopbackwithpassport",
-    name: "loopback",
+    secret: "6432sdf436sdfey634342",
+    name: "loopback1234",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -48,11 +48,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname, function(err) {
-    if (err) throw err
+    if (err) throw err;
 
     // start the server if `$ node server.js`
     if (require.main === module)
-        app.start()
+        app.start();
 })
 var strategy = require("./passport/strategys.js");
 strategy(passport, app);
