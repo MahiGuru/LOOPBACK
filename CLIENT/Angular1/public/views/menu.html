@@ -19,6 +19,16 @@
     </div>
 </nav>
 <br/><br/><br/><br/><br/><br/><br/>
+
+<modal>
+    <modal-options>
+        <modal-heading>title1</modal-heading>
+        <modal-body>Content from Collapse panel.......</modal-body>
+        <modal-footer>Footer</modal-footer>
+    </modal-options>
+
+</modal>
+
 <div class="clearfix row">
 
     <ul class="list-group" ng-repeat="menu in menus" ng-if="showSearchItems">
@@ -32,47 +42,17 @@
                 <input type="checkbox" ng-model="filterCategory.nonveg" ng-true-value="'NONVEG'" ng-false-value=""> NONVEG
                 <input type="checkbox" ng-model="filterCategory.eggie" ng-true-value="'EGGIE'" ng-false-value=""> EGGIE
             </div>
-            {{filterCategory | json}}
-
-
             <article>
                 <rzslider data-rz-slider-model="rangePrice.minValue" data-rz-slider-high="rangePrice.maxValue" data-rz-slider-options="rangePrice.options"></rzslider>
             </article>
 
-            <div class="row">
+            <div class="row nopadding">
                 <!-- TABSET -->
                 <tabset>
                     <tab showtab="{{ShowCategoryNames}}" heading="{{section.name}}" ng-repeat="section in menu.sections">
                         <div ng-repeat="category in section.categories | SectionFilter:filterCategory" role="presentation">
                             <h3 ng-show="ShowCategoryNames">{{category.name}}</h3>
-                            <!-- | orderBy: '-itemCount' -->
-                            <div ng-repeat="item in category.items | filter:searchItem | itemPriceFilter:rangePrice.minValue:rangePrice.maxValue" role="presentation">
-
-                                <div class="alert alert-success" role="alert">
-                                    <h4>
-                                        <p>{{ item.name}} 
-                                            <span class="label label-info">
-                                                <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse" ng-attr-href="#{{item.id}}">reviews</a>
-                                            </span>
-                                            <span class="col-sm-offset-1" ng-bind-html="item.price | currency"></span>
-                                            <span class="pull-right">
-                                                <span class="glyphicon glyphicon-minus" ng-click="$parent.itemRemove(item)"></span>
-                                                <span>{{item.itemCount}}</span>
-                                                <span class="glyphicon glyphicon-plus" ng-click="$parent.itemAdd(item)"></span>
-                                            </span>
-                                        </p>
-                                    </h4>{{item.id}}
-                                    <div class=" collapse" ng-attr-id="{{item.id}}">
-                                        <div class="col-lg-12 alert alert-info" ng-repeat="rating in item.ratings" role="presentation">
-                                            <div role="alert">
-                                                <h5>{{ rating.title}}</h5>
-                                                <p>{{rating.rating}} - {{ rating.comment }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
+                            <gpitem items="category.items"></gpitem>
                         </div>
                     </tab>
                 </tabset>

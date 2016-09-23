@@ -103,3 +103,8 @@ slider span.bubble.selection {
 slider span.bubble.limit {
     color: #808080;
 }
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
