@@ -13,7 +13,7 @@ angular
             },
             templateUrl: "public/js/directives/modal.html",
             link: function(scope, element, attrs, collapseCtrl, transclude) {
-                console.log("MODAL DIRECTIVE");
+
             }
         }
     })

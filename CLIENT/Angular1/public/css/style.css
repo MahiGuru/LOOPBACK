@@ -108,3 +108,12 @@ slider span.bubble.limit {
     padding: 0 !important;
     margin: 0 !important;
 }
+
+.reviewsLink {
+    cursor: pointer;
+    text-decoration : none
+}
+.reviewsLink:hover {
+    color:#FFF;
+    text-decoration : none
+}

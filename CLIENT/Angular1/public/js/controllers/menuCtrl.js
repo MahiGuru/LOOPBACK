@@ -1,7 +1,7 @@
 angular
     .module('GPAPP')
-    .controller("menuCtrl", ['$scope', '$rootScope', '$state', '$http', "Customer", "Venues", "MyItems", "$timeout",
-        function($scope, $rootScope, $state, $http, Customer, Venues, MyItems, $timeout) {
+    .controller("menuCtrl", ['$scope', '$rootScope', '$state', '$http', "Customer", "Venues", "MyItems", "$timeout", "$filter",
+        function($scope, $rootScope, $state, $http, Customer, Venues, MyItems, $timeout, $filter) {
 
             /* Declaring the ngModels below to use in HTML */
             // Search Input model
@@ -152,6 +152,21 @@ angular
                     });
                 }
             }
+            $scope.clearFilter = function() {
+                $scope.filterCategory = { "veg": "", "nonveg": "", "eggie": "" };
+                $scope.rangePrice = {
+                    minValue: 50,
+                    maxValue: 1000,
+                    options: {
+                        floor: 60,
+                        ceil: 1000,
+                        step: 10,
+                        translate: function(value) {
+                            return 'Rs ' + value;
+                        }
+                    }
+                };
+            }
 
             /*
              * Search Input enter method.
@@ -160,7 +175,7 @@ angular
             $scope.searchInputEnter = function(event) {
                 if ($scope.searchItem.length == 0) {
                     $scope.showSearchItems = false;
-                    $scope.ShowCategoryNames = false;
+                    $scope.ShowCategoryNames = true;
                 }
             }
 

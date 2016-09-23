@@ -1,28 +1,37 @@
 <div class="row nopadding">
-    <div ng-repeat="item in items | filter:$parent.searchItem | itemPriceFilter:$parent.rangePrice.minValue:$parent.rangePrice.maxValue" role="presentation">
-
-        <div class="alert alert-success" role="alert">
-            <div>{{ item.name}}
-                <span class="label label-info">
-                    <a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse" ng-attr-href="#{{item.id}}">reviews</a>
-                </span>
-                <span class="col-sm-offset-1" ng-bind-html="item.price | currency"></span>
-                <span class="pull-right">
-                    <span class="glyphicon glyphicon-minus" ng-click="$root.itemRemove(item)"></span>
-                <span>{{item.itemCount}}</span>
-                <span class="glyphicon glyphicon-plus" ng-click="$root.itemAdd(item)"></span>
-                </span>
-            </div>
-            {{item.id}}
-            <div class=" collapse" ng-attr-id="{{item.id}}">
-                <div class="col-lg-12 alert alert-info" ng-repeat="rating in item.ratings" role="presentation">
-                    <div role="alert">
-                        <h5>{{ rating.title}}</h5>
-                        <p>{{rating.rating}} - {{ rating.comment }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
+  <div ng-repeat="item in items | filter:$parent.searchItem | itemPriceFilter:$parent.rangePrice.minValue:$parent.rangePrice.maxValue"
+       role="presentation">
+    <div class="alert alert-success"
+         role="alert">
+      <div>{{ item.name}} 
+      <span class="label label-info">
+        <a aria-controls="collapseExample"
+           aria-expanded="false"
+           class="reviewsLink"
+           data-target="#{{item.id}}"
+           data-toggle="collapse">reviews</a>
+      </span>
+      <span class="col-sm-offset-1"
+            ng-bind-html="item.price | currency"></span>
+      <span class="pull-right">
+        <span class="glyphicon glyphicon-minus"
+              ng-click="$root.itemRemove(item)"></span>
+        <span>{{item.itemCount}}</span>
+        <span class="glyphicon glyphicon-plus"
+              ng-click="$root.itemAdd(item)"></span>
+      </span></div>
+      <div class=" collapse"
+           ng-attr-id="{{item.id}}">
+        <div class="col-lg-12 alert alert-info"
+             ng-repeat="rating in item.ratings"
+             role="presentation">
+          <div role="alert">
+            <h5>{{ rating.title}}</h5>
+            <p>{{rating.rating}} - {{ rating.comment }}</p>
+          </div>
         </div>
+      </div>
+      <div class="clearfix"></div>
     </div>
+  </div>
 </div>

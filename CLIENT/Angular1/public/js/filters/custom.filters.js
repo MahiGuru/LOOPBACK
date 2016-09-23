@@ -15,9 +15,13 @@ angular
             }
         }
     }).filter("SectionFilter", function($sce) {
-        return function(item, option1) {
+        return function(item, option1, option2) {
             var filteredArr = [];
             var optionsArr = [];
+            console.log(option1);
+            if ((option1.veg == "" || option1.veg == undefined) && (option1.nonveg == "" || option1.nonveg == undefined) && (option1.eggie == "" || option1.eggie == undefined)) {
+                return filteredArr = item;
+            }
             _.forEach(item, function(category, index) {
                 if (typeof option1 == "object") {
                     _.forEach(option1, function(value, key) {
@@ -25,15 +29,12 @@ angular
                             filteredArr.push(category);
                         }
                     });
-                } else {
-                    console.log("ITEM ARR ", optionsArr.length);
                 }
             });
             return filteredArr;
         };
     }).filter("itemPriceFilter", function($sce) {
         return function(item, minValue, maxValue) {
-            console.log("ITEM", item, minValue);
             var output = [];
             _.forEach(item, function(val, index) {
                 if (minValue <= val.price && maxValue >= val.price) {
