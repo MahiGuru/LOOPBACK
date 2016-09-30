@@ -1,0 +1,70 @@
+<form>
+    <div class="row">
+        <div class="col-sm-offset-3 col-lg-6">
+
+        <ul class="list-styled">
+            <li *ngFor="let item of people; let i = index;"> 
+            {{i}} - {{item.email }}
+            </li>
+        </ul>
+
+
+
+            <md-card class="demo-card demo-basic">
+                <md-card-content >
+                    <div class="text-center">
+                        <h2>
+                            Customer Login
+                        </h2>
+                    </div>
+                    <br/>
+                    <!-- name attribute must declare... -->
+                    <div class="col-lg-12">
+                        <md-input placeholder="Email / Mobile Number" [(ngModel)]="customer.username" name="firstname" type="text" style="width: 100%">
+                        </md-input> 
+ 
+                    </div>
+                    <!-- name attribute must declare... -->
+                    <div class="col-lg-12">
+                        <md-input placeholder="Password" #password [(ngModel)]="customer.password" name="lastname" style="width: 100%" type="text">
+                        </md-input>
+                        <md-hint align="end">
+                            {{password.characterCount}} / 12
+                        </md-hint>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <br/>
+                    <div class="row col-lg-12">
+                        <button class="pull-right" color="primary" md-raised-button="" 
+                        (click)="getCustomer(customer)">Login</button>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+
+                    <br/>
+
+                    <div class="row">
+                        <div class="clearfix"></div>
+                        <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+                            <i class="fa fa-facebook"></i> Sign in with Facebook
+                        </a>
+                        <a class="btn btn-block btn-social btn-google-plus" href="/auth/google">
+                            <i class="fa fa-google-plus"></i> Sign in with Google
+                        </a>
+                        <a class="btn btn-block btn-social btn-github" href="/auth/github">
+                            <i class="fa fa-github"></i> Sign in with GitHub
+                        </a>
+                        <!--<a class="btn btn-block btn-social btn-linkedin" href="/auth/linkedin">
+                            <i class="fa fa-linkedin"></i> Sign in with LinkedIn
+                        </a> -->
+                        <a class="btn btn-block btn-social btn-twitter" href="/auth/twitter">
+                            <i class="fa fa-twitter"></i> Sign in with Twitter
+                        </a>
+                    </div>
+                    
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</form>
