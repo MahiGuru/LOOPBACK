@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map'
 import {NgForm} from '@angular/forms';
 
 import {LoginService} from '../services/login.services';
+import {CustomerClass as Customer } from './customer.class';
 
 @Component({
     selector: 'login-app',
@@ -23,26 +24,67 @@ export class LoginComponent {
 	customer = new Customer(this.cust.username, this.cust.password);  
 	 people:any;
 	 errorMessage : any;
-	getCustomer(customer:any){
-		/*this.loginService.getUsers().subscribe(
-                       (heroes) => this.people = heroes,
-                       (error) =>  this.errorMessage = <any>error);
-                       */
+	 public Userdetails:any;
+
+	getCustomers(){ 
          this.loginService.getCustomers().then(
          		heroes => { console.log(heroes); this.people = heroes},
          		error => this.errorMessage = <any>error
          	);
 
-		 console.log(customer, this.people, this.errorMessage); }
+		 console.log(this.people, this.errorMessage); 
 	}
+	getCustomerById(id:any){
+		console.log(id);
+		this.loginService.getCustomerById(id).then(
+         		heroes => { console.log("Details >> ", heroes); this.Userdetails = heroes},
+         		error => this.errorMessage = <any>error
+         	);
+	}
+	removeUser(id:any){
+		console.log(id);
+		this.loginService.removeUserById(id).then(
+				data => { console.log("DATA ", data); this.getCustomers();},
+				error => this.errorMessage = <any>error
+			)
+	}
+
+	updateUser(id:any, customer:any){
+		var cust = {
+		    "firstname": "MAHI",
+		    "lastName": "MAKS",
+		    "mobileNo": customer.username,
+		    "email": customer.password
+		}
+		cust.mobileNo = "Updated Mobile No";
+		cust.email = "Updated Email"; 
+
+		this.loginService.updateCustomer(id, cust).subscribe(
+			data => { console.log("UPDATE >> ", data);  this.getCustomers(); },
+			err => this.errorMessage = <any>err
+		)
+		
+	}
+
+
+	addCustomer(customer:any){ 
+		//let cust = {username : customer.username, password : customer.password, email :"added@gmail.com", mobileno :84665464564);  
+		var cust = {
+		    "firstname": "MAHI",
+		    "lastName": "MAKS",
+		    "mobileNo": customer.username,
+		    "email": customer.password
+		}
+		console.log("CUST ", customer);
+		this.loginService.addCustomer(cust).subscribe(
+				cust => { console.log(cust); this.people.push(cust)},
+				err => { this.errorMessage = <any>err}
+			)
+	}
+
+
+
+
 }
 
 
-class Customer {
-	constructor(public username:string, public password:string, public email?:string, public mobileNumber ?: number){
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-	} 
-}

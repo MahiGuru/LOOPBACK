@@ -6,7 +6,8 @@ var order_component_1 = require('../components/order.component');
 var appRoutes = [
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'menu', component: menu_component_1.MenuComponent },
-    { path: 'orders', component: order_component_1.OrderComponent }
+    { path: 'orders', component: order_component_1.OrderComponent },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 exports.appRoutingProviders = [];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

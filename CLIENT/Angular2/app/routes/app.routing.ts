@@ -10,7 +10,8 @@ import { OrderComponent }  from '../components/order.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent },
-  { path: 'orders', component: OrderComponent }
+  { path: 'orders', component: OrderComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   /*{ path: 'menu', component: MenuComponent },
   {
     path: 'customers',

@@ -1,12 +1,40 @@
 <form>
     <div class="row">
         <div class="col-sm-offset-3 col-lg-6">
+ 
+            <div class="row" *ngFor='let item of people; let i = index'> 
+                <div class='row'>
+                   <div class="col-lg-12"> 
+                        {{i}} - {{item.email }} -{{item.id}}
+                        </div>
+                    <div class="col-lg-12">
+                        <button color="warn" md-raised-button="" 
+                            (click)="removeUser(item.id)">Remove</button>
 
-        <ul class="list-styled">
-            <li *ngFor="let item of people; let i = index;"> 
-            {{i}} - {{item.email }}
-            </li>
-        </ul>
+                        <button color="accent" md-raised-button="" 
+                            (click)="updateUser(item.id, customer)">Update</button>
+
+                        <button color="primary" md-raised-button="" 
+                            (click)="getCustomerById(item.id)">Get Details</button>
+                    </div>
+                    <div class="row" *ngIf="Userdetails && Userdetails.id == item.id" >
+                        {{ Userdetails.email }}
+                    </div>
+
+                </div> <br />
+
+          </div> 
+          <hr />
+        <div class="clearfix"></div>
+        <div class="row">
+                    <button  color="primary" md-raised-button="" 
+                        (click)="getCustomers()">Get Customers List</button>
+                    <button  color="accent" md-raised-button="" 
+                        (click)="addCustomer(customer)">Add Customer</button>
+
+        </div>
+        <div class="clearfix"></div><br />
+
 
 
 

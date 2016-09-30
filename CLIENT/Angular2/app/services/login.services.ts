@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Http, Response } from '@angular/http';
+import {Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
-
+import 'rxjs/add/operator/delay'; 
 // Operators
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
@@ -12,6 +11,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
+
+import {CustomerClass as Customer } from '../components/customer.class';
 
 @Injectable()
 export class LoginService {
@@ -23,18 +24,35 @@ export class LoginService {
 	  			.toPromise()
 	  			.then(this.extractData)
 	  			.catch(this.handleError);
-
+	  }
+	  getCustomerById(id:any) : Promise<any[]>{
+	  	return this.http.get('http://localhost:2000/api/Customers/'+id)
+	  			.toPromise()
+	  			.then(this.extractData)
+	  			.catch(this.handleError);
 	  }
 
-	  /*
-	  	* Using Observable and returns observable...
-	  */
-	  getUsers():  Observable<any[]>{
+	  removeUserById(id:any) : Promise<any>{
+	  	return this.http.delete('http://localhost:2000/api/Customers/'+id)
+	  			.toPromise()
+	  			.then(this.extractData)
+	  			.catch(this.handleError);
+	  }
 
-		    return this.http.get('http://localhost:2000/api/Customers')
-		                    .map(this.extractData)
-		                    .catch(this.handleError);
-
+	  addCustomer(customer:any) : Observable<any> { 
+	  	let headers = new Headers({'content-type':'application/json'});
+	  	let options = new RequestOptions({headers: headers});
+	  	console.log("customer From Service >>> ", customer);
+	  	return this.http.post('http://localhost:2000/api/Customers/', customer, options)
+	  			.map(this.extractData)
+	  			.catch(this.handleError);
+	  }
+	  updateCustomer(id:any, customer:any) : Observable<any>{
+	  	let headers = new Headers({'content-type':'application/json'});
+	  	let options = new RequestOptions({headers: headers});
+	  	return this.http.put('http://localhost:2000/api/Customers/'+id, customer, options)
+	  			.map(this.extractData)
+	  			.catch(this.handleError);
 	  }
 
 	  private extractData(res: Response) {

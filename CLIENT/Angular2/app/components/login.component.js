@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
 var login_services_1 = require('../services/login.services');
+var customer_class_1 = require('./customer.class');
 var LoginComponent = (function () {
     function LoginComponent(loginService) {
         this.loginService = loginService;
@@ -20,16 +21,46 @@ var LoginComponent = (function () {
             email: "maks6535@gmail.com",
             mobileNumber: 9441076540
         };
-        this.customer = new Customer(this.cust.username, this.cust.password);
+        this.customer = new customer_class_1.CustomerClass(this.cust.username, this.cust.password);
     }
-    LoginComponent.prototype.getCustomer = function (customer) {
+    LoginComponent.prototype.getCustomers = function () {
         var _this = this;
-        /*this.loginService.getUsers().subscribe(
-                       (heroes) => this.people = heroes,
-                       (error) =>  this.errorMessage = <any>error);
-                       */
         this.loginService.getCustomers().then(function (heroes) { console.log(heroes); _this.people = heroes; }, function (error) { return _this.errorMessage = error; });
-        console.log(customer, this.people, this.errorMessage);
+        console.log(this.people, this.errorMessage);
+    };
+    LoginComponent.prototype.getCustomerById = function (id) {
+        var _this = this;
+        console.log(id);
+        this.loginService.getCustomerById(id).then(function (heroes) { console.log("Details >> ", heroes); _this.Userdetails = heroes; }, function (error) { return _this.errorMessage = error; });
+    };
+    LoginComponent.prototype.removeUser = function (id) {
+        var _this = this;
+        console.log(id);
+        this.loginService.removeUserById(id).then(function (data) { console.log("DATA ", data); _this.getCustomers(); }, function (error) { return _this.errorMessage = error; });
+    };
+    LoginComponent.prototype.updateUser = function (id, customer) {
+        var _this = this;
+        var cust = {
+            "firstname": "MAHI",
+            "lastName": "MAKS",
+            "mobileNo": customer.username,
+            "email": customer.password
+        };
+        cust.mobileNo = "Updated Mobile No";
+        cust.email = "Updated Email";
+        this.loginService.updateCustomer(id, cust).subscribe(function (data) { console.log("UPDATE >> ", data); _this.getCustomers(); }, function (err) { return _this.errorMessage = err; });
+    };
+    LoginComponent.prototype.addCustomer = function (customer) {
+        var _this = this;
+        //let cust = {username : customer.username, password : customer.password, email :"added@gmail.com", mobileno :84665464564);  
+        var cust = {
+            "firstname": "MAHI",
+            "lastName": "MAKS",
+            "mobileNo": customer.username,
+            "email": customer.password
+        };
+        console.log("CUST ", customer);
+        this.loginService.addCustomer(cust).subscribe(function (cust) { console.log(cust); _this.people.push(cust); }, function (err) { _this.errorMessage = err; });
     };
     LoginComponent = __decorate([
         core_1.Component({
@@ -42,17 +73,4 @@ var LoginComponent = (function () {
     return LoginComponent;
 }());
 exports.LoginComponent = LoginComponent;
-var Customer = (function () {
-    function Customer(username, password, email, mobileNumber) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.mobileNumber = mobileNumber;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.mobileNumber = mobileNumber;
-    }
-    return Customer;
-}());
 //# sourceMappingURL=login.component.js.map

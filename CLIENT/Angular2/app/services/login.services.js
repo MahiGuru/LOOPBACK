@@ -32,11 +32,30 @@ var LoginService = (function () {
             .then(this.extractData)
             .catch(this.handleError);
     };
-    /*
-      * Using Observable and returns observable...
-    */
-    LoginService.prototype.getUsers = function () {
-        return this.http.get('http://localhost:2000/api/Customers')
+    LoginService.prototype.getCustomerById = function (id) {
+        return this.http.get('http://localhost:2000/api/Customers/' + id)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    };
+    LoginService.prototype.removeUserById = function (id) {
+        return this.http.delete('http://localhost:2000/api/Customers/' + id)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    };
+    LoginService.prototype.addCustomer = function (customer) {
+        var headers = new http_1.Headers({ 'content-type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        console.log("customer From Service >>> ", customer);
+        return this.http.post('http://localhost:2000/api/Customers/', customer, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    LoginService.prototype.updateCustomer = function (id, customer) {
+        var headers = new http_1.Headers({ 'content-type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.put('http://localhost:2000/api/Customers/' + id, customer, options)
             .map(this.extractData)
             .catch(this.handleError);
     };
