@@ -5,10 +5,10 @@ import {NgForm} from '@angular/forms';
 
 
 @Component({
-    selector: 'menu-app',
+    selector: 'order-app',
     moduleId: module.id,     
-    templateUrl: '../views/menu.html'
+    templateUrl: '../../views/order.html'
 })
-export class MenuComponent {   
+export class OrderComponent {   
 
-}
+} 

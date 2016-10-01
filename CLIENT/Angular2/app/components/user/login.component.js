@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
-var login_services_1 = require('../services/login.services');
-var customer_class_1 = require('./customer.class');
+var login_services_1 = require('../../services/login.services');
+var customer_class_1 = require('../../datacontracts/customer.class');
 var LoginComponent = (function () {
     function LoginComponent(loginService) {
         this.loginService = loginService;
@@ -66,7 +66,7 @@ var LoginComponent = (function () {
         core_1.Component({
             selector: 'login-app',
             moduleId: module.id,
-            templateUrl: '../views/login.html'
+            templateUrl: '../../views/login.html'
         }), 
         __metadata('design:paramtypes', [login_services_1.LoginService])
     ], LoginComponent);

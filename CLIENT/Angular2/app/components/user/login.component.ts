@@ -3,13 +3,13 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map'
 import {NgForm} from '@angular/forms';
 
-import {LoginService} from '../services/login.services';
-import {CustomerClass as Customer } from './customer.class';
+import {LoginService} from '../../services/login.services';
+import {CustomerClass as Customer } from '../../datacontracts/customer.class';
 
 @Component({
     selector: 'login-app',
     moduleId: module.id,     
-    templateUrl: '../views/login.html'
+    templateUrl: '../../views/login.html'
 })
 export class LoginComponent {   
 	constructor(private loginService:LoginService){}

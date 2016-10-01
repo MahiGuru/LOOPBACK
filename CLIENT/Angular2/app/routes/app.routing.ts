@@ -2,13 +2,15 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent }  from '../components/app.component';
-import { LoginComponent }  from '../components/login.component';
-import { MenuComponent }  from '../components/menu.component';
-import { OrderComponent }  from '../components/order.component';
+import { LoginComponent }  from '../components/user/login.component';
+import { SignupComponent }  from '../components/user/signup.component';
+import { MenuComponent }  from '../components/menu/menu.component';
+import { OrderComponent }  from '../components/order/order.component';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'orders', component: OrderComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'},

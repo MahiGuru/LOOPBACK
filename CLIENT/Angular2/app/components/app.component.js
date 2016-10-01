@@ -17,7 +17,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             moduleId: module.id,
-            template: "<h2> APP ROUTER OUTLET </h2>\n    <nav>\n\t    <a routerLink=\"/login\" routerLinkActive=\"active\">Login</a> | \n\t    <a routerLink=\"/menu\" routerLinkActive=\"active\">Menu</a>  | \n\t    <a routerLink=\"/orders\" routerLinkActive=\"active\">Orders</a>  | \n\t    <a routerLink=\"/\" routerLinkActive=\"active\">HOME</a> \n\t  </nav>\n    <router-outlet></router-outlet>"
+            template: "<h2> APP ROUTER OUTLET </h2>\n    <nav>\n\t    <a routerLink=\"/login\" routerLinkActive=\"active\">Login</a> | \n\t    <a routerLink=\"/signup\" routerLinkActive=\"active\">Signup</a>  | \n\t    <a routerLink=\"/menu\" routerLinkActive=\"active\">Menu</a>  | \n\t    <a routerLink=\"/orders\" routerLinkActive=\"active\">Orders</a>  | \n\t    <a routerLink=\"/\" routerLinkActive=\"active\">HOME</a> \n\t  </nav>\n    <router-outlet></router-outlet>"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

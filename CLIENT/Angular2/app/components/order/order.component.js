@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
-var MenuComponent = (function () {
-    function MenuComponent() {
+var OrderComponent = (function () {
+    function OrderComponent() {
     }
-    MenuComponent = __decorate([
+    OrderComponent = __decorate([
         core_1.Component({
-            selector: 'menu-app',
+            selector: 'order-app',
             moduleId: module.id,
-            templateUrl: '../views/menu.html'
+            templateUrl: '../../views/order.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], MenuComponent);
-    return MenuComponent;
+    ], OrderComponent);
+    return OrderComponent;
 }());
-exports.MenuComponent = MenuComponent;
-//# sourceMappingURL=menu.component.js.map
+exports.OrderComponent = OrderComponent;
+//# sourceMappingURL=order.component.js.map
