@@ -10,11 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
+var common_1 = require('@angular/common');
 var login_services_1 = require('../../services/login.services');
 var customer_class_1 = require('../../datacontracts/customer.class');
+var router_1 = require('@angular/router');
 var LoginComponent = (function () {
-    function LoginComponent(loginService) {
+    function LoginComponent(loginService, route, router, location) {
         this.loginService = loginService;
+        this.route = route;
+        this.router = router;
+        this.location = location;
         this.cust = {
             username: "Mahipal",
             password: "mahi6535",
@@ -23,6 +28,19 @@ var LoginComponent = (function () {
         };
         this.customer = new customer_class_1.CustomerClass(this.cust.username, this.cust.password);
     }
+    LoginComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.forEach(function (params) {
+            _this.getId = (params['_id']); // (+) converts string 'id' to a number
+            console.log("IDD >> ", params['_id']);
+            //this.service.getHero(id).then(hero => this.hero = hero);
+        });
+    };
+    LoginComponent.prototype.onSelect = function (item) {
+        var link = ['/signup', item.id];
+        this.router.navigate(link);
+        //return;
+    };
     LoginComponent.prototype.getCustomers = function () {
         var _this = this;
         this.loginService.getCustomers().then(function (heroes) { console.log(heroes); _this.people = heroes; }, function (error) { return _this.errorMessage = error; });
@@ -66,9 +84,10 @@ var LoginComponent = (function () {
         core_1.Component({
             selector: 'login-app',
             moduleId: module.id,
-            templateUrl: '../../views/login.html'
+            templateUrl: '../../views/login.html',
+            providers: [login_services_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [login_services_1.LoginService])
+        __metadata('design:paramtypes', [login_services_1.LoginService, router_1.ActivatedRoute, router_1.Router, common_1.Location])
     ], LoginComponent);
     return LoginComponent;
 }());

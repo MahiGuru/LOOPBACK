@@ -3,6 +3,8 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map'
 import {NgForm} from '@angular/forms';
 
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 import {LoginService} from '../../services/login.services';
 import {CustomerClass as Customer } from '../../datacontracts/customer.class';
 
@@ -12,19 +14,42 @@ import {CustomerClass as Customer } from '../../datacontracts/customer.class';
     templateUrl: '../../views/signup.html'
 })
 export class SignupComponent {   
-	constructor(private loginService:LoginService){}
-
-	cust = {
-		username : "Mahipal", 
-		password : "mahi6535",
-		email : "maks6535@gmail.com",
-		mobileNumber : 9441076540
-
+	constructor(private loginService:LoginService,  private route: ActivatedRoute, private router: Router){
 	}
-	customer = new Customer(this.cust.username, this.cust.password);  
-	 people:any;
-	 errorMessage : any;
-	 public Userdetails:any;
+	public getId : any;
+	ngOnInit() {
+		console.log(this.route.params);
+		this.route.params.forEach((params: Params) => { 
+		   this.getId = (params['id']); // (+) converts string 'id' to a number
+			this.getCustomerById();		
+		});
+	}
+
+	getCustomerById(){
+		console.log(this.getId, this.customer); 
+		this.loginService.getCustomerById(this.getId).then(
+         		(user:any) => { 
+         			console.log("Details >> ", this.customer); 
+         			this.customer = new Customer(user.email, user.password, user.mobileNo, user.firstname, user.lastName);
+         		},
+         		error => this.errorMessage = <any>error
+         	); 
+         	
+	}
+ 
+	userDetails = {
+		email  : "mahi6535@gmail.com", 
+		firstname  :"Mahipal", 
+		lastName : "Gurjala",
+		mobileNo  :9441076540, 
+		password : "mahi6535"
+	}
+
+	customer = new Customer(this.userDetails.email, this.userDetails.password, this.userDetails.mobileNo, this.userDetails.firstname, this.userDetails.lastName);  
+	people:any[] = [];
+	errorMessage : any;
+	
+	public Userdetails:any;
 
 	getCustomers(){ 
          this.loginService.getCustomers().then(
@@ -33,21 +58,7 @@ export class SignupComponent {
          	);
 
 		 console.log(this.people, this.errorMessage); 
-	}
-	getCustomerById(id:any){
-		console.log(id);
-		this.loginService.getCustomerById(id).then(
-         		heroes => { console.log("Details >> ", heroes); this.Userdetails = heroes},
-         		error => this.errorMessage = <any>error
-         	);
-	}
-	removeUser(id:any){
-		console.log(id);
-		this.loginService.removeUserById(id).then(
-				data => { console.log("DATA ", data); this.getCustomers();},
-				error => this.errorMessage = <any>error
-			)
-	}
+	} 
 
 	updateUser(id:any, customer:any){
 		var cust = {
@@ -68,15 +79,8 @@ export class SignupComponent {
 
 
 	addCustomer(customer:any){ 
-		//let cust = {username : customer.username, password : customer.password, email :"added@gmail.com", mobileno :84665464564);  
-		var cust = {
-		    "firstname": "MAHI",
-		    "lastName": "MAKS",
-		    "mobileNo": customer.username,
-		    "email": customer.password
-		}
 		console.log("CUST ", customer);
-		this.loginService.addCustomer(cust).subscribe(
+		this.loginService.addCustomer(customer).subscribe(
 				cust => { console.log(cust); this.people.push(cust)},
 				err => { this.errorMessage = <any>err}
 			)

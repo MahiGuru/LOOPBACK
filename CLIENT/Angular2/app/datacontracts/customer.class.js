@@ -1,14 +1,11 @@
 "use strict";
 var CustomerClass = (function () {
-    function CustomerClass(username, password, email, mobileNumber) {
-        this.username = username;
-        this.password = password;
+    function CustomerClass(email, password, mobileNo, firstname, lastName) {
         this.email = email;
-        this.mobileNumber = mobileNumber;
-        this.username = username;
         this.password = password;
-        this.email = email;
-        this.mobileNumber = mobileNumber;
+        this.mobileNo = mobileNo;
+        this.firstname = firstname;
+        this.lastName = lastName;
     }
     return CustomerClass;
 }());

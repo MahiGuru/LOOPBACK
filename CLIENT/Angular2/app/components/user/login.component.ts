@@ -1,30 +1,50 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map'
 import {NgForm} from '@angular/forms';
+import { Location } from '@angular/common';
 
 import {LoginService} from '../../services/login.services';
 import {CustomerClass as Customer } from '../../datacontracts/customer.class';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'login-app',
     moduleId: module.id,     
-    templateUrl: '../../views/login.html'
+    templateUrl: '../../views/login.html',
+    providers : [LoginService]
 })
 export class LoginComponent {   
-	constructor(private loginService:LoginService){}
+	constructor(private loginService:LoginService,  private route: ActivatedRoute, private router: Router, private location:Location){}
 
 	cust = {
 		username : "Mahipal", 
 		password : "mahi6535",
 		email : "maks6535@gmail.com",
-		mobileNumber : 9441076540
+		mobileNumber : 9441076540 
+	} 
 
+	public getId : any;
+
+	ngOnInit() {
+	  this.route.params.forEach((params: Params) => { 
+	     this.getId = (params['_id']); // (+) converts string 'id' to a number
+	     console.log("IDD >> ", params['_id']);
+	     //this.service.getHero(id).then(hero => this.hero = hero);
+	   });
 	}
+
 	customer = new Customer(this.cust.username, this.cust.password);  
 	 people:any;
 	 errorMessage : any;
 	 public Userdetails:any;
+	 onSelectedHero :any;
+
+    onSelect(item:any) {
+    	let link = ['/signup', item.id]; 
+  		this.router.navigate(link); 
+  		//return;
+	}
 
 	getCustomers(){ 
          this.loginService.getCustomers().then(

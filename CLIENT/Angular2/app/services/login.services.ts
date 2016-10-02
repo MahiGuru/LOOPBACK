@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 
-import {CustomerClass as Customer } from '../components/customer.class';
+import {CustomerClass as Customer } from '../datacontracts/customer.class';
 
 @Injectable()
 export class LoginService {

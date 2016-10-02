@@ -10,33 +10,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
+var router_1 = require('@angular/router');
 var login_services_1 = require('../../services/login.services');
 var customer_class_1 = require('../../datacontracts/customer.class');
 var SignupComponent = (function () {
-    function SignupComponent(loginService) {
+    function SignupComponent(loginService, route, router) {
         this.loginService = loginService;
-        this.cust = {
-            username: "Mahipal",
-            password: "mahi6535",
-            email: "maks6535@gmail.com",
-            mobileNumber: 9441076540
+        this.route = route;
+        this.router = router;
+        this.userDetails = {
+            email: "mahi6535@gmail.com",
+            firstname: "Mahipal",
+            lastName: "Gurjala",
+            mobileNo: 9441076540,
+            password: "mahi6535"
         };
-        this.customer = new customer_class_1.CustomerClass(this.cust.username, this.cust.password);
+        this.customer = new customer_class_1.CustomerClass(this.userDetails.email, this.userDetails.password, this.userDetails.mobileNo, this.userDetails.firstname, this.userDetails.lastName);
+        this.people = [];
     }
+    SignupComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log(this.route.params);
+        this.route.params.forEach(function (params) {
+            _this.getId = (params['id']); // (+) converts string 'id' to a number
+            _this.getCustomerById();
+        });
+    };
+    SignupComponent.prototype.getCustomerById = function () {
+        var _this = this;
+        console.log(this.getId, this.customer);
+        this.loginService.getCustomerById(this.getId).then(function (user) {
+            console.log("Details >> ", _this.customer);
+            _this.customer = new customer_class_1.CustomerClass(user.email, user.password, user.mobileNo, user.firstname, user.lastName);
+        }, function (error) { return _this.errorMessage = error; });
+    };
     SignupComponent.prototype.getCustomers = function () {
         var _this = this;
         this.loginService.getCustomers().then(function (heroes) { console.log(heroes); _this.people = heroes; }, function (error) { return _this.errorMessage = error; });
         console.log(this.people, this.errorMessage);
-    };
-    SignupComponent.prototype.getCustomerById = function (id) {
-        var _this = this;
-        console.log(id);
-        this.loginService.getCustomerById(id).then(function (heroes) { console.log("Details >> ", heroes); _this.Userdetails = heroes; }, function (error) { return _this.errorMessage = error; });
-    };
-    SignupComponent.prototype.removeUser = function (id) {
-        var _this = this;
-        console.log(id);
-        this.loginService.removeUserById(id).then(function (data) { console.log("DATA ", data); _this.getCustomers(); }, function (error) { return _this.errorMessage = error; });
     };
     SignupComponent.prototype.updateUser = function (id, customer) {
         var _this = this;
@@ -52,15 +63,8 @@ var SignupComponent = (function () {
     };
     SignupComponent.prototype.addCustomer = function (customer) {
         var _this = this;
-        //let cust = {username : customer.username, password : customer.password, email :"added@gmail.com", mobileno :84665464564);  
-        var cust = {
-            "firstname": "MAHI",
-            "lastName": "MAKS",
-            "mobileNo": customer.username,
-            "email": customer.password
-        };
         console.log("CUST ", customer);
-        this.loginService.addCustomer(cust).subscribe(function (cust) { console.log(cust); _this.people.push(cust); }, function (err) { _this.errorMessage = err; });
+        this.loginService.addCustomer(customer).subscribe(function (cust) { console.log(cust); _this.people.push(cust); }, function (err) { _this.errorMessage = err; });
     };
     SignupComponent = __decorate([
         core_1.Component({
@@ -68,7 +72,7 @@ var SignupComponent = (function () {
             moduleId: module.id,
             templateUrl: '../../views/signup.html'
         }), 
-        __metadata('design:paramtypes', [login_services_1.LoginService])
+        __metadata('design:paramtypes', [login_services_1.LoginService, router_1.ActivatedRoute, router_1.Router])
     ], SignupComponent);
     return SignupComponent;
 }());
