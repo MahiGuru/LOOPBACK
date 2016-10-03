@@ -11,7 +11,7 @@
                     <div class="col-lg-12">
 
                     <button  color="primary" md-raised-button="" 
-                        (click)="onSelect(item)">ONSELECT</button>
+                        (click)="onSelectUser(item)">ONSELECT</button>
 
                         <button color="warn" md-raised-button="" 
                             routerLink="/signup/{{item.id}}" routerLinkActive="active">Edit</button>
@@ -73,7 +73,7 @@
                     <br/>
                     <div class="row col-lg-12">
                         <button class="pull-right" color="primary" md-raised-button="" 
-                        (click)="getCustomer(customer)">Login</button>
+                        (click)="checkLogin(customer)">Login</button>
                     </div>
                     <div class="clearfix">
                     </div>

@@ -11,21 +11,11 @@ import { OrderComponent }  from '../components/order/order.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent }, 
   { path: 'menu', component: MenuComponent },
+  { path: 'menu/:customerId/:venueId', component: MenuComponent },
   { path: 'orders', component: OrderComponent },
-  { path: 'signup/:_id', component: SignupComponent }, 
+  { path: 'signup/:id', component: SignupComponent }, 
   { path: '', redirectTo: '/login', pathMatch: 'full'},
-  { path: '**', redirectTo: '/login' },
-  
-  /*{ path: 'menu', component: MenuComponent },
-  {
-    path: 'customers',
-    component: CustomerComponent,
-    data: {
-      title: 'Customers List'
-    }
-  },
-  { path: '', component: LoginComponent },
-  { path: '**', component: PageNotFoundComponent }*/
+  { path: '**', redirectTo: '/login' }
 ];
 
 export const appRoutingProviders: any[] = [

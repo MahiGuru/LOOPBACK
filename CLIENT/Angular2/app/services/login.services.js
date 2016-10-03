@@ -24,38 +24,37 @@ require('rxjs/add/operator/toPromise');
 var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
+        this.baseUrl = 'http://localhost:2000/api/';
         this.isLoggedIn = false;
+        this.headers = new http_1.Headers({ 'content-type': 'application/json' });
+        this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     LoginService.prototype.getCustomers = function () {
-        return this.http.get('http://localhost:2000/api/Customers')
+        return this.http.get(this.baseUrl + 'Customers')
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);
     };
     LoginService.prototype.getCustomerById = function (id) {
-        return this.http.get('http://localhost:2000/api/Customers/' + id)
+        return this.http.get(this.baseUrl + 'Customers/' + id)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);
     };
     LoginService.prototype.removeUserById = function (id) {
-        return this.http.delete('http://localhost:2000/api/Customers/' + id)
+        return this.http.delete(this.baseUrl + 'Customers/' + id)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);
     };
     LoginService.prototype.addCustomer = function (customer) {
-        var headers = new http_1.Headers({ 'content-type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
         console.log("customer From Service >>> ", customer);
-        return this.http.post('http://localhost:2000/api/Customers/', customer, options)
+        return this.http.post(this.baseUrl + 'Customers/', customer, this.options)
             .map(this.extractData)
             .catch(this.handleError);
     };
     LoginService.prototype.updateCustomer = function (id, customer) {
-        var headers = new http_1.Headers({ 'content-type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.put('http://localhost:2000/api/Customers/' + id, customer, options)
+        return this.http.put(this.baseUrl + 'Customers/' + id, customer, this.options)
             .map(this.extractData)
             .catch(this.handleError);
     };

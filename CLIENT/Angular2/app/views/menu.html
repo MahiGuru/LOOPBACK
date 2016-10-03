@@ -1,13 +1,29 @@
-<h2>
-    MENU Page
-</h2>
-<form>
-    <div class="row">
-        <div class="col-sm-offset-3 col-lg-6">
-        <button (click)="onSelect('cust_02')" color="primary" md-raised-button="">
-                            ONSELECT
-                        </button>
-             
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <br/>
+        <div class="row">
+            <div class="col-lg-3">My Items Count :
+                <span class="text-strong" ></span>
+            </div>
+            <div class="col-lg-3">
+                <a ui-sref="reviewItems">Review Items</a>
+            </div>
+            <div class="col-lg-6 text-right" ng-if="customer">Welcome 
+                <a href="#">Profile</a> | <a href="#" ng-click="logoutClick()">Logout</a>
+            </div>
+        </div><br>
+        <div class="clearfix row">
+            <div><input type="text" class="form-control" placeholder="Search item"></div>
         </div>
+        <br>
     </div>
-</form>
+</nav>
+<div class="row">
+	<ul class="list-styled">
+		<li *ngFor='let item of menuItems; let i = index'>
+			{{item.itemName}}
+		</li>
+	</ul>
+
+</div>
+

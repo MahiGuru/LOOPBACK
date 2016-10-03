@@ -40,15 +40,22 @@ export class LoginComponent {
 	 public Userdetails:any;
 	 onSelectedHero :any;
 
-    onSelect(item:any) {
+    onSelectUser(item:any) {
     	let link = ['/signup', item.id]; 
   		this.router.navigate(link); 
   		//return;
 	}
+	checkLogin(customer:any){
+		this.loginService.getCustomers().then(
+         		heroes => { console.log("GET CUSTOMERS - ", heroes); this.people = heroes},
+         		error => this.errorMessage = <any>error
+         	);
+
+	}
 
 	getCustomers(){ 
          this.loginService.getCustomers().then(
-         		heroes => { console.log(heroes); this.people = heroes},
+         		heroes => { console.log("GET CUSTOMERS - ", heroes); this.people = heroes},
          		error => this.errorMessage = <any>error
          	);
 
@@ -57,14 +64,14 @@ export class LoginComponent {
 	getCustomerById(id:any){
 		console.log(id);
 		this.loginService.getCustomerById(id).then(
-         		heroes => { console.log("Details >> ", heroes); this.Userdetails = heroes},
+         		heroes => { console.log("GetCustomerID >> ", heroes); this.Userdetails = heroes},
          		error => this.errorMessage = <any>error
          	);
 	}
 	removeUser(id:any){
 		console.log(id);
 		this.loginService.removeUserById(id).then(
-				data => { console.log("DATA ", data); this.getCustomers();},
+				data => { console.log("REMOVE USER ", data); this.getCustomers();},
 				error => this.errorMessage = <any>error
 			)
 	}

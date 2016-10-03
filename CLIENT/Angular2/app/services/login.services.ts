@@ -16,41 +16,40 @@ import {CustomerClass as Customer } from '../datacontracts/customer.class';
 
 @Injectable()
 export class LoginService {
+	  baseUrl:string = 'http://localhost:2000/api/';
 	  isLoggedIn: boolean = false;  
 	  constructor(public http:Http){}
+	  headers = new Headers({'content-type':'application/json'});
+	  options = new RequestOptions({headers: this.headers});
 	  
 	  getCustomers() :Promise<any[]> {
-	  	return this.http.get('http://localhost:2000/api/Customers')
+	  	return this.http.get(this.baseUrl+'Customers')
 	  			.toPromise()
 	  			.then(this.extractData)
 	  			.catch(this.handleError);
 	  }
 	  getCustomerById(id:any) : Promise<any[]>{
-	  	return this.http.get('http://localhost:2000/api/Customers/'+id)
+	  	return this.http.get(this.baseUrl+'Customers/'+id)
 	  			.toPromise()
 	  			.then(this.extractData)
 	  			.catch(this.handleError);
 	  }
 
 	  removeUserById(id:any) : Promise<any>{
-	  	return this.http.delete('http://localhost:2000/api/Customers/'+id)
+	  	return this.http.delete(this.baseUrl+'Customers/'+id)
 	  			.toPromise()
 	  			.then(this.extractData)
 	  			.catch(this.handleError);
 	  }
 
 	  addCustomer(customer:any) : Observable<any> { 
-	  	let headers = new Headers({'content-type':'application/json'});
-	  	let options = new RequestOptions({headers: headers});
 	  	console.log("customer From Service >>> ", customer);
-	  	return this.http.post('http://localhost:2000/api/Customers/', customer, options)
+	  	return this.http.post(this.baseUrl+'Customers/', customer, this.options)
 	  			.map(this.extractData)
 	  			.catch(this.handleError);
 	  }
 	  updateCustomer(id:any, customer:any) : Observable<any>{
-	  	let headers = new Headers({'content-type':'application/json'});
-	  	let options = new RequestOptions({headers: headers});
-	  	return this.http.put('http://localhost:2000/api/Customers/'+id, customer, options)
+	  	return this.http.put(this.baseUrl+'Customers/'+id, customer, this.options)
 	  			.map(this.extractData)
 	  			.catch(this.handleError);
 	  }
@@ -68,6 +67,4 @@ export class LoginService {
 	    console.error(errMsg); // log to console instead
 	    return Observable.throw(errMsg);
 	  }
-  }
- 
-}
+  } 

@@ -7,10 +7,11 @@ var order_component_1 = require('../components/order/order.component');
 var appRoutes = [
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'menu', component: menu_component_1.MenuComponent },
+    { path: 'menu/:customerId/:venueId', component: menu_component_1.MenuComponent },
     { path: 'orders', component: order_component_1.OrderComponent },
-    { path: 'signup/:_id', component: signup_component_1.SignupComponent },
+    { path: 'signup/:id', component: signup_component_1.SignupComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: '**', redirectTo: '/login' },
+    { path: '**', redirectTo: '/login' }
 ];
 exports.appRoutingProviders = [];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

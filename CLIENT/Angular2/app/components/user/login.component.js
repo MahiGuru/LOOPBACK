@@ -36,25 +36,29 @@ var LoginComponent = (function () {
             //this.service.getHero(id).then(hero => this.hero = hero);
         });
     };
-    LoginComponent.prototype.onSelect = function (item) {
+    LoginComponent.prototype.onSelectUser = function (item) {
         var link = ['/signup', item.id];
         this.router.navigate(link);
         //return;
     };
+    LoginComponent.prototype.checkLogin = function (customer) {
+        var _this = this;
+        this.loginService.getCustomers().then(function (heroes) { console.log("GET CUSTOMERS - ", heroes); _this.people = heroes; }, function (error) { return _this.errorMessage = error; });
+    };
     LoginComponent.prototype.getCustomers = function () {
         var _this = this;
-        this.loginService.getCustomers().then(function (heroes) { console.log(heroes); _this.people = heroes; }, function (error) { return _this.errorMessage = error; });
+        this.loginService.getCustomers().then(function (heroes) { console.log("GET CUSTOMERS - ", heroes); _this.people = heroes; }, function (error) { return _this.errorMessage = error; });
         console.log(this.people, this.errorMessage);
     };
     LoginComponent.prototype.getCustomerById = function (id) {
         var _this = this;
         console.log(id);
-        this.loginService.getCustomerById(id).then(function (heroes) { console.log("Details >> ", heroes); _this.Userdetails = heroes; }, function (error) { return _this.errorMessage = error; });
+        this.loginService.getCustomerById(id).then(function (heroes) { console.log("GetCustomerID >> ", heroes); _this.Userdetails = heroes; }, function (error) { return _this.errorMessage = error; });
     };
     LoginComponent.prototype.removeUser = function (id) {
         var _this = this;
         console.log(id);
-        this.loginService.removeUserById(id).then(function (data) { console.log("DATA ", data); _this.getCustomers(); }, function (error) { return _this.errorMessage = error; });
+        this.loginService.removeUserById(id).then(function (data) { console.log("REMOVE USER ", data); _this.getCustomers(); }, function (error) { return _this.errorMessage = error; });
     };
     LoginComponent.prototype.updateUser = function (id, customer) {
         var _this = this;
