@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, Headers, RequestOptions } from '@angular/http';
+import {Http, Response, Headers, RequestOptions, Jsonp, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
@@ -12,16 +12,31 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 
+
+import {Urls, AppHttps} from "./common/common.serviceUrls";
+
 import {CustomerClass as Customer } from '../datacontracts/customer.class';
 
 @Injectable()
 export class LoginService {
 	  baseUrl:string = 'http://localhost:2000/api/';
-	  isLoggedIn: boolean = false;  
-	  constructor(public http:Http){}
-	  headers = new Headers({'content-type':'application/json'});
-	  options = new RequestOptions({headers: this.headers});
+	  isLoggedIn: boolean = false;
+		constructor(public http: Http, private jsonp: Jsonp, public appHttp:AppHttps){
+			this.appHttp = new AppHttps(this.http);
+			 
+		}
 	  
+    headers = new Headers({
+        'content-type': 'application/json'
+    });
+    options = new RequestOptions({
+        headers: this.headers
+    });
+		UserLoginMethod(email:string, password:string) : Promise<any>{
+			  return this.appHttp.Get('Customers?filter[where][email]='+email+'&filter[where][password]='+password);				
+		}
+
+
 	  getCustomers() :Promise<any[]> {
 	  	return this.http.get(this.baseUrl+'Customers')
 	  			.toPromise()

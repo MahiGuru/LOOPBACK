@@ -3,12 +3,12 @@
         <br/>
         <div class="row">
             <div class="col-lg-3">My Items Count :
-                <span class="text-strong" ></span>
+                <span class="text-strong"></span>
             </div>
             <div class="col-lg-3">
                 <a ui-sref="reviewItems">Review Items</a>
             </div>
-            <div class="col-lg-6 text-right" ng-if="customer">Welcome 
+            <div class="col-lg-6 text-right" ng-if="customer">Welcome
                 <a href="#">Profile</a> | <a href="#" ng-click="logoutClick()">Logout</a>
             </div>
         </div><br>
@@ -19,11 +19,10 @@
     </div>
 </nav>
 <div class="row">
-	<ul class="list-styled">
-		<li *ngFor='let item of menuItems; let i = index'>
-			{{item.itemName}}
-		</li>
-	</ul>
+    <ul class="list-styled">
+        <li *ngFor='let item of menuItems; let i = index'>
+            {{item.itemName}}
+        </li>
+    </ul>
 
 </div>
-

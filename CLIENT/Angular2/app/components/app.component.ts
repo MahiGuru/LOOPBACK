@@ -1,25 +1,7 @@
 import { Component } from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map'
-import {NgForm} from '@angular/forms';
-
-var mongoose    = require('mongoose');
-var Schema = mongoose.Schema;
-
-// set up a mongoose model
-var UserSchema = new Schema({
-  name: {
-        type: String,
-        unique: true,
-        required: true
-    },
-  password: {
-        type: String,
-        required: true
-    }
-});
- 
-module.exports = mongoose.model('User', UserSchema);
+import {NgForm} from '@angular/forms'; 
 
 @Component({
     selector: 'my-app',

@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map'
 import {NgForm} from '@angular/forms';
 import { Location } from '@angular/common';
 
+import {AppHttps} from '../../services/common/common.serviceUrls';
 import {LoginService} from '../../services/login.services';
 import {CustomerClass as Customer } from '../../datacontracts/customer.class';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -12,10 +13,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     selector: 'login-app',
     moduleId: module.id,     
     templateUrl: '../../views/login.html',
-    providers : [LoginService]
+    providers : [AppHttps, LoginService]
 })
 export class LoginComponent {   
-	constructor(private loginService:LoginService,  private route: ActivatedRoute, private router: Router, private location:Location){}
+	constructor(private loginService:LoginService,  private route: ActivatedRoute, private router: Router, private location:Location, private appHttps:AppHttps){}
 
 	cust = {
 		username : "Mahipal", 

@@ -11,15 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
 var common_1 = require('@angular/common');
+var common_serviceUrls_1 = require('../../services/common/common.serviceUrls');
 var login_services_1 = require('../../services/login.services');
 var customer_class_1 = require('../../datacontracts/customer.class');
 var router_1 = require('@angular/router');
 var LoginComponent = (function () {
-    function LoginComponent(loginService, route, router, location) {
+    function LoginComponent(loginService, route, router, location, appHttps) {
         this.loginService = loginService;
         this.route = route;
         this.router = router;
         this.location = location;
+        this.appHttps = appHttps;
         this.cust = {
             username: "Mahipal",
             password: "mahi6535",
@@ -89,9 +91,9 @@ var LoginComponent = (function () {
             selector: 'login-app',
             moduleId: module.id,
             templateUrl: '../../views/login.html',
-            providers: [login_services_1.LoginService]
+            providers: [common_serviceUrls_1.AppHttps, login_services_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [login_services_1.LoginService, router_1.ActivatedRoute, router_1.Router, common_1.Location])
+        __metadata('design:paramtypes', [login_services_1.LoginService, router_1.ActivatedRoute, router_1.Router, common_1.Location, common_serviceUrls_1.AppHttps])
     ], LoginComponent);
     return LoginComponent;
 }());

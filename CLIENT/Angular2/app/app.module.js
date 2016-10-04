@@ -15,19 +15,20 @@ var material_1 = require('@angular/material');
 var http_1 = require('@angular/http');
 var app_routing_1 = require('./routes/app.routing');
 var app_component_1 = require('./components/app.component');
-var login_component_1 = require('./components/user/login.component');
-var signup_component_1 = require('./components/user/signup.component');
-var menu_component_1 = require('./components/menu/menu.component');
-var order_component_1 = require('./components/order/order.component');
 var login_services_1 = require('./services/login.services');
+var common_serviceUrls_1 = require("./services/common/common.serviceUrls");
+var dependant_module_1 = require("./modules/dependant.module");
+var menu_module_1 = require("./modules/menu.module");
+var order_module_1 = require("./modules/order.module");
+var authenticate_module_1 = require("./modules/authenticate.module");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, http_1.JsonpModule, material_1.MaterialModule.forRoot(), app_routing_1.routing],
-            declarations: [app_component_1.AppComponent, login_component_1.LoginComponent, menu_component_1.MenuComponent, order_component_1.OrderComponent, signup_component_1.SignupComponent],
-            providers: [app_routing_1.appRoutingProviders, login_services_1.LoginService],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, http_1.JsonpModule, dependant_module_1.DependantModule, authenticate_module_1.AuthenticateModule, menu_module_1.MenuModule, order_module_1.OrderModule, material_1.MaterialModule.forRoot(), app_routing_1.routing],
+            declarations: [app_component_1.AppComponent],
+            providers: [common_serviceUrls_1.AppHttps, app_routing_1.appRoutingProviders, login_services_1.LoginService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
