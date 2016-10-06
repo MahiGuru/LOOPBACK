@@ -5,13 +5,13 @@ var signup_component_1 = require('../components/user/signup.component');
 var menu_component_1 = require('../components/menu/menu.component');
 var order_component_1 = require('../components/order/order.component');
 var appRoutes = [
-    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'signin', component: login_component_1.LoginComponent },
     { path: 'menu', component: menu_component_1.MenuComponent },
     { path: 'menu/:customerId/:venueId', component: menu_component_1.MenuComponent },
     { path: 'orders', component: order_component_1.OrderComponent },
     { path: 'signup/:id', component: signup_component_1.SignupComponent },
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: '**', redirectTo: '/login' }
+    { path: '', redirectTo: '/signin', pathMatch: 'full' },
+    { path: '**', redirectTo: '/signin' }
 ];
 exports.appRoutingProviders = [];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

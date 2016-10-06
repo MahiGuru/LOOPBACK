@@ -9,13 +9,13 @@ import { OrderComponent }  from '../components/order/order.component';
 
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent }, 
+  { path: 'signin', component: LoginComponent }, 
   { path: 'menu', component: MenuComponent },
   { path: 'menu/:customerId/:venueId', component: MenuComponent },
   { path: 'orders', component: OrderComponent },
   { path: 'signup/:id', component: SignupComponent }, 
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
-  { path: '**', redirectTo: '/login' }
+  { path: '', redirectTo: '/signin', pathMatch: 'full'},
+  { path: '**', redirectTo: '/signin' }
 ];
 
 export const appRoutingProviders: any[] = [

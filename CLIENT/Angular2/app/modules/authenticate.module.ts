@@ -4,19 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
-import {DependantModule} from "./dependant.module"
+import {DependantModule} from "./dependant.module" 
 
-import { routing, appRoutingProviders }  from '../routes/app.routing';
+import { authRouting } from "../routes/authenticate.routing";
 
 
+import { LoginService } from '../services/login.services';
+import { AppHttps } from "../services/common/common.serviceUrls";
 
 import { LoginComponent }  from '../components/user/login.component';
 import { SignupComponent }  from '../components/user/signup.component'; 
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, MaterialModule.forRoot(), routing],
+  imports: [ CommonModule, FormsModule, MaterialModule.forRoot(), authRouting],
   declarations: [ LoginComponent, SignupComponent ],
   exports : [LoginComponent, SignupComponent],
-  providers : [appRoutingProviders]
+  providers : [AppHttps, LoginService]
 }) 
 export class AuthenticateModule { } 

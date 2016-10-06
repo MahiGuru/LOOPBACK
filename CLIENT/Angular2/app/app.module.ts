@@ -10,16 +10,15 @@ import { AppComponent }  from './components/app.component';
 
 import { LoginService } from './services/login.services';
 import { AppHttps } from "./services/common/common.serviceUrls"
-
-import { DependantModule } from "./modules/dependant.module";
+ 
 import { MenuModule } from "./modules/menu.module";
 import { OrderModule } from "./modules/order.module";
 import { AuthenticateModule } from "./modules/authenticate.module";
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, HttpModule, JsonpModule,DependantModule, AuthenticateModule, MenuModule,OrderModule, MaterialModule.forRoot(), routing],
+  imports: [ BrowserModule, FormsModule, HttpModule, JsonpModule, AuthenticateModule, MenuModule,OrderModule, MaterialModule.forRoot(), routing],
   declarations: [ AppComponent ],
-  providers : [AppHttps, appRoutingProviders, LoginService],
+  providers : [appRoutingProviders],
   bootstrap: [  AppComponent ]
 })
 export class AppModule { } 
