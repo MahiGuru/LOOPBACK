@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-require('rxjs/add/operator/map');
-var OrderComponent = (function () {
-    function OrderComponent() {
+var common_1 = require('@angular/common');
+var order_component_1 = require('./components/order.component');
+var OrderModule = (function () {
+    function OrderModule() {
     }
-    OrderComponent = __decorate([
-        core_1.Component({
-            selector: 'order-app',
-            moduleId: module.id,
-            templateUrl: '../../views/order.html'
+    OrderModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule],
+            declarations: [order_component_1.OrderComponent],
+            exports: [order_component_1.OrderComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], OrderComponent);
-    return OrderComponent;
+    ], OrderModule);
+    return OrderModule;
 }());
-exports.OrderComponent = OrderComponent;
-//# sourceMappingURL=order.component.js.map
+exports.OrderModule = OrderModule;
+//# sourceMappingURL=order.module.js.map

@@ -5,13 +5,13 @@ import {NgForm} from '@angular/forms';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import {LoginService} from '../../services/login.services';
-import {CustomerClass as Customer } from '../../datacontracts/customer.class';
+import {LoginService} from '../../../services/login.services';
+import {CustomerClass as Customer } from '../../../datacontracts/customer.class';
 
 @Component({
     selector: 'signup-app',
     moduleId: module.id,     
-    templateUrl: '../../views/signup.html'
+    templateUrl: './signup.html'
 })
 export class SignupComponent {   
 	constructor(private loginService:LoginService,  private route: ActivatedRoute, private router: Router){

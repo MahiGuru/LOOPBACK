@@ -14,10 +14,10 @@ var forms_1 = require('@angular/forms');
 var material_1 = require('@angular/material');
 var http_1 = require('@angular/http');
 var app_routing_1 = require('./routes/app.routing');
-var app_component_1 = require('./components/app.component');
-var menu_module_1 = require("./modules/menu.module");
-var order_module_1 = require("./modules/order.module");
-var authenticate_module_1 = require("./modules/authenticate.module");
+var app_component_1 = require('./app.component');
+var menu_module_1 = require("./modules/menu/menu.module");
+var order_module_1 = require("./modules/order/order.module");
+var authenticate_module_1 = require("./modules/authenticate/authenticate.module");
 var AppModule = (function () {
     function AppModule() {
     }

@@ -7,7 +7,7 @@ import {NgForm} from '@angular/forms';
 @Component({
     selector: 'order-app',
     moduleId: module.id,     
-    templateUrl: '../../views/order.html'
+    templateUrl: './order.html'
 })
 export class OrderComponent {   
 

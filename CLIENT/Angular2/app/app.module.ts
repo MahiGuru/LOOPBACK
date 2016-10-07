@@ -6,14 +6,14 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { routing, appRoutingProviders }  from './routes/app.routing';
 
-import { AppComponent }  from './components/app.component';  
+import { AppComponent }  from './app.component';  
 
 import { LoginService } from './services/login.services';
 import { AppHttps } from "./services/common/common.serviceUrls"
  
-import { MenuModule } from "./modules/menu.module";
-import { OrderModule } from "./modules/order.module";
-import { AuthenticateModule } from "./modules/authenticate.module";
+import { MenuModule } from "./modules/menu/menu.module";
+import { OrderModule } from "./modules/order/order.module";
+import { AuthenticateModule } from "./modules/authenticate/authenticate.module";
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, HttpModule, JsonpModule, AuthenticateModule, MenuModule,OrderModule, MaterialModule.forRoot(), routing],

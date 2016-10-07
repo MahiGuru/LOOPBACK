@@ -1,15 +1,12 @@
 "use strict";
 var router_1 = require('@angular/router');
-var login_component_1 = require('../components/user/login.component');
-var signup_component_1 = require('../components/user/signup.component');
-var menu_component_1 = require('../components/menu/menu.component');
-var order_component_1 = require('../components/order/order.component');
+var login_component_1 = require('../modules/authenticate/components/login.component');
 var appRoutes = [
     { path: 'signin', component: login_component_1.LoginComponent },
-    { path: 'menu', component: menu_component_1.MenuComponent },
-    { path: 'menu/:customerId/:venueId', component: menu_component_1.MenuComponent },
-    { path: 'orders', component: order_component_1.OrderComponent },
-    { path: 'signup/:id', component: signup_component_1.SignupComponent },
+    /*{ path: 'menu', component: MenuComponent },
+    { path: 'menu/:customerId/:venueId', component: MenuComponent },
+    { path: 'orders', component: OrderComponent },
+    { path: 'signup/:id', component: SignupComponent }, */
     { path: '', redirectTo: '/signin', pathMatch: 'full' },
     { path: '**', redirectTo: '/signin' }
 ];

@@ -12,19 +12,20 @@ var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
 var material_1 = require('@angular/material');
-var authenticate_routing_1 = require("../routes/authenticate.routing");
-var login_services_1 = require('../services/login.services');
-var common_serviceUrls_1 = require("../services/common/common.serviceUrls");
-var login_component_1 = require('../components/user/login.component');
-var signup_component_1 = require('../components/user/signup.component');
+var authenticate_routing_1 = require("../../routes/authenticate.routing");
+var login_services_1 = require('../../services/login.services');
+var common_serviceUrls_1 = require("../../services/common/common.serviceUrls");
+var authenticate_component_1 = require('./authenticate.component');
+var login_component_1 = require('./components/login.component');
+var signup_component_1 = require('./components/signup.component');
 var AuthenticateModule = (function () {
     function AuthenticateModule() {
     }
     AuthenticateModule = __decorate([
         core_1.NgModule({
             imports: [common_1.CommonModule, forms_1.FormsModule, material_1.MaterialModule.forRoot(), authenticate_routing_1.authRouting],
-            declarations: [login_component_1.LoginComponent, signup_component_1.SignupComponent],
-            exports: [login_component_1.LoginComponent, signup_component_1.SignupComponent],
+            declarations: [authenticate_component_1.AuthenticateComponent, login_component_1.LoginComponent, signup_component_1.SignupComponent],
+            exports: [authenticate_component_1.AuthenticateComponent, login_component_1.LoginComponent, signup_component_1.SignupComponent],
             providers: [common_serviceUrls_1.AppHttps, login_services_1.LoginService]
         }), 
         __metadata('design:paramtypes', [])

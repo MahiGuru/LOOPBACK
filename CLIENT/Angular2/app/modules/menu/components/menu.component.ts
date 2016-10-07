@@ -6,14 +6,14 @@ import {NgForm} from '@angular/forms';
 
 import { Location } from '@angular/common';
 
-import {LoginService} from '../../services/login.services';
-import {CustomerClass as Customer } from '../../datacontracts/customer.class';
+import {LoginService} from '../../../services/login.services';
+import {CustomerClass as Customer } from '../../../datacontracts/customer.class';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'menu-app',
     moduleId: module.id,     
-    templateUrl: '../../views/menu.html'
+    templateUrl: './menu.html'
 })
 export class MenuComponent {   
 	constructor(
