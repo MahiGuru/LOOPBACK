@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthenticateComponent } from "../../authenticate/authenticate.component";
-import {MenuComponent} from "../components/menu.component";
-import {MenuDashboardComponent} from "../components/menu-dashboard.component";
+import { MenuComponent } from "../components/menu.component";
+import { MenuDashboardComponent } from "../components/menu-dashboard.component";
 
 import { MenuGuardService } from "../services/menu-guard.service"
 

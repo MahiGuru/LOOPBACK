@@ -7,9 +7,6 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { routing, appRoutingProviders }  from './routes/app.routing';
 
 import { AppComponent }  from './app.component';  
-
-import { LoginService } from './services/login.services';
-import { AppHttps } from "./services/common/common.serviceUrls"
  
 import { MenuModule } from "./modules/menu/menu.module";
 import { OrderModule } from "./modules/order/order.module";

@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
 var router_1 = require('@angular/router');
-var login_services_1 = require('../../../services/login.services');
+var login_services_1 = require('../services/login.services');
 var customer_class_1 = require('../../../datacontracts/customer.class');
 var SignupComponent = (function () {
     function SignupComponent(loginService, route, router) {

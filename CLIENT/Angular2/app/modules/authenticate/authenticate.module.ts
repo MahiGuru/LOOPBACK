@@ -7,7 +7,7 @@ import { MaterialModule } from '@angular/material';
 import { authRouting } from "./routes/authenticate.routing";
 import {AuthGuardService} from "./services/auth-guard.service";
 
-import { LoginService } from '../../services/login.services';
+import { LoginService } from './services/login.services';
 import { AppHttps } from "../../services/common/common.serviceUrls";
 
 import { AuthenticateComponent }  from './authenticate.component';

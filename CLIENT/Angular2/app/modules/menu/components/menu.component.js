@@ -11,11 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
 var common_1 = require('@angular/common');
-var login_services_1 = require('../../../services/login.services');
 var router_1 = require('@angular/router');
 var MenuComponent = (function () {
-    function MenuComponent(loginService, route, router, location) {
-        this.loginService = loginService;
+    function MenuComponent(route, router, location) {
         this.route = route;
         this.router = router;
         this.location = location;
@@ -33,7 +31,7 @@ var MenuComponent = (function () {
             moduleId: module.id,
             templateUrl: './menu.html'
         }), 
-        __metadata('design:paramtypes', [login_services_1.LoginService, router_1.ActivatedRoute, router_1.Router, common_1.Location])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, common_1.Location])
     ], MenuComponent);
     return MenuComponent;
 }());

@@ -21,7 +21,7 @@ require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
-var common_serviceUrls_1 = require("./common/common.serviceUrls");
+var common_serviceUrls_1 = require("../../../services/common/common.serviceUrls");
 var LoginService = (function () {
     function LoginService(http, jsonp, appHttp) {
         this.http = http;

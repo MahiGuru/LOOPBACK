@@ -5,7 +5,7 @@ import {NgForm} from '@angular/forms';
 import { Location } from '@angular/common';
 
 import {AppHttps} from '../../../services/common/common.serviceUrls';
-import {LoginService} from '../../../services/login.services';
+import {LoginService} from '../services/login.services';
 import {CustomerClass as Customer } from '../../../datacontracts/customer.class';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 

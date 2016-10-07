@@ -13,9 +13,9 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 
 
-import {Urls, AppHttps} from "./common/common.serviceUrls";
+import {Urls, AppHttps} from "../../../services/common/common.serviceUrls";
 
-import {CustomerClass as Customer } from '../datacontracts/customer.class';
+import {CustomerClass as Customer } from '../../../datacontracts/customer.class';
 
 @Injectable()
 export class LoginService {

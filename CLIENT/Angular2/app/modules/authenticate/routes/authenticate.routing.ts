@@ -32,7 +32,7 @@ const authRoutes: Routes = [
                     {
                         path: ':id',
                         component: SignupComponent,
-                        canActivate: [AuthGuardService],
+                       // canActivate: [AuthGuardService],
                     }
                 ]
             }
