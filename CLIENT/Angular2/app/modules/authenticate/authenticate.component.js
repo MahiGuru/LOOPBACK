@@ -17,7 +17,7 @@ var AuthenticateComponent = (function () {
         core_1.Component({
             selector: 'auth-app',
             moduleId: module.id,
-            template: "<h2> Authenticate Module </h2> \n    <router-outlet></router-outlet>"
+            template: "<h2> Authenticate Module </h2>\n    <router-outlet></router-outlet>"
         }), 
         __metadata('design:paramtypes', [])
     ], AuthenticateComponent);

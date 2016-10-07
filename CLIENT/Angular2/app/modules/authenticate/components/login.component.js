@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 require('rxjs/add/operator/map');
 var common_1 = require('@angular/common');
 var common_serviceUrls_1 = require('../../../services/common/common.serviceUrls');
-var login_services_1 = require('../../../services/login.services');
+var login_services_1 = require('../services/login.services');
 var customer_class_1 = require('../../../datacontracts/customer.class');
 var router_1 = require('@angular/router');
 var LoginComponent = (function () {

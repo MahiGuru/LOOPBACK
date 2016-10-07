@@ -9,23 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var order_route_1 = require("./routes/order.route");
-var order_guard_service_1 = require("./services/order-guard.service");
-var order_component_1 = require('./components/order.component');
-var OrderModule = (function () {
-    function OrderModule() {
+var router_1 = require("@angular/router");
+var MenuGuardService = (function () {
+    function MenuGuardService(router) {
+        this.router = router;
+        this.isLoggedIn = true;
     }
-    OrderModule = __decorate([
-        core_1.NgModule({
-            imports: [common_1.CommonModule, order_route_1.order_routing],
-            declarations: [order_component_1.OrderComponent],
-            exports: [order_component_1.OrderComponent],
-            providers: [order_guard_service_1.OrderGuardService]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], OrderModule);
-    return OrderModule;
+    MenuGuardService.prototype.canActivate = function (route, state) {
+        console.log("MENU Guard Service Called", state);
+        if (!this.isLoggedIn)
+            this.router.navigate(['/auth']);
+        return false;
+    };
+    MenuGuardService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [router_1.Router])
+    ], MenuGuardService);
+    return MenuGuardService;
 }());
-exports.OrderModule = OrderModule;
-//# sourceMappingURL=order.module.js.map
+exports.MenuGuardService = MenuGuardService;
+//# sourceMappingURL=menu-guard.service.js.map
