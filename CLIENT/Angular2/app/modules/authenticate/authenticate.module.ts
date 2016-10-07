@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
-import { authRouting } from "../../routes/authenticate.routing";
+import { authRouting } from "./routes/authenticate.routing";
 
 
 import { LoginService } from '../../services/login.services';
