@@ -9,19 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-require('rxjs/add/operator/map');
-var AuthenticateComponent = (function () {
-    function AuthenticateComponent() {
+var router_1 = require("@angular/router");
+var AuthGuardService = (function () {
+    function AuthGuardService(router) {
+        this.router = router;
+        this.isLoggedIn = false;
+        this.redirectUrl = "";
     }
-    AuthenticateComponent = __decorate([
-        core_1.Component({
-            selector: 'auth-app',
-            moduleId: module.id,
-            template: "<h2> Authenticate Module </h2>\n    <router-outlet></router-outlet>"
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AuthenticateComponent);
-    return AuthenticateComponent;
+    AuthGuardService.prototype.canActivate = function (route, state) {
+        //return true;
+        this.router.navigate(['/menu']);
+        return false;
+    };
+    AuthGuardService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [router_1.Router])
+    ], AuthGuardService);
+    return AuthGuardService;
 }());
-exports.AuthenticateComponent = AuthenticateComponent;
-//# sourceMappingURL=authenticate.component.js.map
+exports.AuthGuardService = AuthGuardService;
+//# sourceMappingURL=auth-guard.service.js.map

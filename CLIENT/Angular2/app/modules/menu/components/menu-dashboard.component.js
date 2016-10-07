@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-require('rxjs/add/operator/map');
-var AuthenticateComponent = (function () {
-    function AuthenticateComponent() {
+var MenuDashboardComponent = (function () {
+    function MenuDashboardComponent() {
     }
-    AuthenticateComponent = __decorate([
+    MenuDashboardComponent.prototype.ngOnInit = function () {
+    };
+    MenuDashboardComponent = __decorate([
         core_1.Component({
-            selector: 'auth-app',
             moduleId: module.id,
-            template: "<h2> Authenticate Module </h2>\n    <router-outlet></router-outlet>"
+            selector: 'menu-dash',
+            template: "<h2>Menu Dashboard</h2>"
         }), 
         __metadata('design:paramtypes', [])
-    ], AuthenticateComponent);
-    return AuthenticateComponent;
+    ], MenuDashboardComponent);
+    return MenuDashboardComponent;
 }());
-exports.AuthenticateComponent = AuthenticateComponent;
-//# sourceMappingURL=authenticate.component.js.map
+exports.MenuDashboardComponent = MenuDashboardComponent;
+//# sourceMappingURL=menu-dashboard.component.js.map
